@@ -211,6 +211,9 @@
   #lista-respuestas .fila.ok .icono{color:var(--verde);}
   #lista-respuestas .fila.ko .icono{color:var(--rojo);}
   #lista-respuestas .fila .letra{font-weight:bold;color:var(--azul);flex:0 0 1.6em;}
+  #lista-respuestas .fila .resp{line-height:1.35;}
+  #lista-respuestas .pregunta-fallo{color:#6b6459;font-size:.88em;}
+  #lista-respuestas .sin-fallos{padding:20px 10px;text-align:center;font-weight:bold;color:var(--verde);font-size:1.1rem;}
   .botones-final{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
 
   footer.creditos{font-size:.75rem;color:#8a7b5e;margin-top:14px;}
@@ -312,6 +315,470 @@
    =================================================================== */
 const DATA = {
   primaria: {
+  A: [
+    { r: "Adán", p: "El primer hombre que creó Dios." },
+    { r: "Abel", p: "Hijo de Adán y Eva que fue bueno y cuidaba ovejas." },
+    { r: "Abraham", p: "Hombre muy anciano al que Dios le prometió un hijo." },
+    { r: "Ángel", p: "Mensajero de Dios que tiene alas." },
+    { r: "Arca", p: "Barco grande que construyó Noé para salvarse del diluvio." },
+    { r: "Amén", p: "Palabra que decimos al final de una oración." },
+    { r: "Agua", p: "Líquido transparente que usamos para bautizar y para beber." },
+    { r: "Amor", p: "Lo que sentimos por Dios y por las personas que queremos." },
+    { r: "Apóstol", p: "Cada uno de los doce amigos que Jesús elegía para seguirle." },
+    { r: "Aleluya", p: "Palabra de alegría que cantamos en Pascua." },
+    { r: "Adviento", p: "Tiempo de espera antes de Navidad." },
+    { r: "Altar", p: "Mesa donde el sacerdote celebra la misa." },
+    { r: "Adoración", p: "Lo que hacemos cuando rezamos de rodillas ante Dios con mucho respeto." },
+    { r: "Ascensión", p: "Día en que Jesús subió al cielo." },
+    { r: "Anunciación", p: "Momento en que el ángel Gabriel le dijo a María que sería la madre de Jesús." },
+  ],
+  B: [
+    { r: "Biblia", p: "Libro sagrado donde está la Palabra de Dios." },
+    { r: "Belén", p: "Pueblo pequeño donde nació Jesús." },
+    { r: "Bautismo", p: "Sacramento con el que entramos a formar parte de la Iglesia." },
+    { r: "Bautista", p: "Apellido de Juan, el primo de Jesús que anunciaba su llegada." },
+    { r: "Burrito", p: "Animal pequeño en el que entró Jesús a Jerusalén." },
+    { r: "Buey", p: "Animal grande que, junto a una mula, calentaba al niño Jesús en el portal." },
+    { r: "Bendición", p: "Lo que da el sacerdote al final de la misa." },
+    { r: "Buen Samaritano", p: "Hombre de una parábola que ayudó a un herido en el camino." },
+    { r: "Buen Pastor", p: "Nombre que se le da a Jesús porque cuida de sus ovejas." },
+    { r: "Barco", p: "Vehículo que flota en el agua y sirve para navegar." },
+    { r: "Bartolomé", p: "Nombre de uno de los doce apóstoles de Jesús." },
+    { r: "Baltasar", p: "Nombre de uno de los tres Reyes Magos." },
+    { r: "Barrabás", p: "Preso que el pueblo pidió liberar en lugar de Jesús." },
+    { r: "Babel", p: "Torre muy alta que los hombres quisieron construir hasta el cielo." },
+    { r: "Bodas de Caná", p: "Fiesta donde Jesús convirtió el agua en vino." },
+  ],
+  C: [
+    { r: "Cruz", p: "Signo en forma de X vertical donde murió Jesús." },
+    { r: "Cristo", p: "Otro nombre que le damos a Jesús." },
+    { r: "Cielo", p: "Lugar donde viven Dios y los santos para siempre." },
+    { r: "Comunión", p: "Sacramento en que recibimos el cuerpo de Jesús en la misa." },
+    { r: "Cáliz", p: "Copa que usa el sacerdote para el vino en la misa." },
+    { r: "Cuaresma", p: "Tiempo de cuarenta días antes de la Semana Santa." },
+    { r: "Campana", p: "Objeto de metal que suena en lo alto de las iglesias." },
+    { r: "Creación", p: "Lo que hizo Dios cuando formó el mundo en seis días." },
+    { r: "Cristiano", p: "Persona que cree en Jesús y sigue sus enseñanzas." },
+    { r: "Corona", p: "Objeto redondo que llevan los reyes en la cabeza." },
+    { r: "Confesión", p: "Sacramento en el que decimos nuestros pecados al sacerdote." },
+    { r: "Cena", p: "Última comida que Jesús compartió con sus apóstoles." },
+    { r: "Catequesis", p: "Clases donde aprendemos sobre Dios y la fe." },
+    { r: "Corazón", p: "Parte de nuestro cuerpo que late y con la que amamos." },
+    { r: "Camino", p: "Una de las cosas que Jesús dijo que él era, junto con la verdad y la vida." },
+  ],
+  D: [
+    { r: "Dios", p: "Creador de todo, Padre de Jesús y de todos nosotros." },
+    { r: "David", p: "Niño pastor que de mayor se convirtió en un gran rey y venció a un gigante." },
+    { r: "Daniel", p: "Profeta que fue metido en un foso con leones y no le pasó nada." },
+    { r: "Domingo", p: "Día de la semana en que vamos a misa." },
+    { r: "Discípulo", p: "Persona que sigue y aprende de un maestro, como los que seguían a Jesús." },
+    { r: "Diluvio", p: "Lluvia muy grande que duró cuarenta días y cuarenta noches en tiempos de Noé." },
+    { r: "Diez Mandamientos", p: "Las leyes que Dios le dio a Moisés en dos tablas de piedra." },
+    { r: "Desierto", p: "Lugar seco y con mucha arena donde el pueblo de Israel caminó cuarenta años." },
+    { r: "Demonio", p: "Ángel malo que se rebeló contra Dios." },
+    { r: "Doce Apóstoles", p: "Grupo de amigos muy cercanos que acompañaban siempre a Jesús, como Pedro o Juan." },
+    { r: "Dones", p: "Regalos especiales que nos da el Espíritu Santo." },
+    { r: "Descendimiento", p: "Momento en que bajaron el cuerpo de Jesús de la cruz." },
+    { r: "Duda", p: "Lo contrario de estar seguro de algo." },
+    { r: "Día de Reyes", p: "Fiesta del seis de enero en que llegan los Reyes Magos con regalos." },
+    { r: "Domingo de Ramos", p: "Primer día de la Semana Santa, cuando se bendicen las palmas en la iglesia." },
+  ],
+  E: [
+    { r: "Eva", p: "Primera mujer, esposa de Adán." },
+    { r: "Estrella", p: "La que vieron los Reyes Magos y les guió hasta Belén." },
+    { r: "Espíritu Santo", p: "Tercera persona de la Santísima Trinidad, que suele representarse como una paloma." },
+    { r: "Egipto", p: "País al que huyó la Sagrada Familia para escapar del rey Herodes." },
+    { r: "Edén", p: "Jardín precioso donde vivían Adán y Eva al principio." },
+    { r: "Evangelio", p: "Libro de la Biblia donde se cuenta la vida de Jesús." },
+    { r: "Eucaristía", p: "Otro nombre que se le da a la misa y a la comunión." },
+    { r: "Esperanza", p: "Lo que sentimos cuando confiamos en que algo bueno va a pasar." },
+    { r: "Establo", p: "Lugar con animales donde nació Jesús." },
+    { r: "Esteban", p: "Primer mártir de la Iglesia, apedreado por su fe." },
+    { r: "Elías", p: "Profeta que subió al cielo en un carro de fuego." },
+    { r: "Eliseo", p: "Profeta que ayudó a Elías y continuó su misión cuando él se fue." },
+    { r: "Emaús", p: "Pueblo al que iban dos discípulos cuando Jesús resucitado caminó con ellos." },
+    { r: "Enmanuel", p: "Nombre que significa Dios con nosotros." },
+    { r: "Encarnación", p: "Momento en que Dios se hizo hombre y nació como Jesús." },
+  ],
+  F: [
+    { r: "Fe", p: "Creer en Dios aunque no lo veamos." },
+    { r: "Familia", p: "Grupo formado por padres, hijos y hermanos que viven juntos y se quieren." },
+    { r: "Francisco", p: "Nombre de un Papa de la Iglesia que antes de ser elegido fue arzobispo de Buenos Aires." },
+    { r: "Faraón", p: "Rey de Egipto en tiempos de Moisés." },
+    { r: "Felipe", p: "Nombre de uno de los doce apóstoles de Jesús." },
+    { r: "Fuego", p: "Elemento caliente que arde y da luz." },
+    { r: "Fruto", p: "Lo que da un árbol, como una manzana o una pera." },
+    { r: "Fariseo", p: "Persona de la época de Jesús muy estricta con las normas religiosas." },
+    { r: "Fiesta", p: "Celebración alegre por un motivo especial." },
+    { r: "Fátima", p: "Lugar de Portugal donde la Virgen se apareció a tres niños pastores." },
+    { r: "Fiel", p: "Persona que practica su religión y es de confianza." },
+    { r: "Fortaleza", p: "Don del Espíritu Santo que nos da valentía." },
+    { r: "Fraternidad", p: "Cuando las personas se tratan como hermanos." },
+    { r: "Fin del mundo", p: "Lo que pasará algún día cuando Jesús vuelva a la tierra, según la Biblia." },
+    { r: "Francisco de Asís", p: "Santo que fundó una orden religiosa y hablaba con los pájaros y los animales." },
+  ],
+  G: [
+    { r: "Gabriel", p: "Nombre del ángel que anunció a María que sería madre de Jesús." },
+    { r: "Génesis", p: "Primer libro de la Biblia, donde se cuenta la creación del mundo." },
+    { r: "Goliat", p: "Gigante al que venció David con una piedra y una honda." },
+    { r: "Galilea", p: "Región donde Jesús vivió de pequeño y predicó mucho." },
+    { r: "Getsemaní", p: "Huerto donde Jesús rezó la noche antes de ser apresado." },
+    { r: "Gracia", p: "Regalo especial que Dios nos da sin que lo merezcamos." },
+    { r: "Gloria", p: "Canto de alabanza a Dios que se reza en la misa." },
+    { r: "Gente", p: "Conjunto de muchas personas." },
+    { r: "Gallo", p: "Animal que cantó tres veces cuando Pedro negó conocer a Jesús." },
+    { r: "Gruta", p: "Cueva pequeña, como la de Lourdes donde se apareció la Virgen." },
+    { r: "Guadalupe", p: "Nombre de una Virgen muy venerada en México." },
+    { r: "Gaspar", p: "Nombre de uno de los tres Reyes Magos." },
+    { r: "Gedeón", p: "Juez de Israel que venció a un ejército enemigo con muy pocos soldados." },
+    { r: "Grano de mostaza", p: "Semilla muy pequeña con la que Jesús comparó el Reino de los cielos." },
+    { r: "Gran Semana", p: "Otro nombre que se usa para los días de la Pasión, Muerte y Resurrección de Jesús." },
+  ],
+  H: [
+    { r: "Hijo", p: "Así se llama un niño con relación a su padre y a su madre." },
+    { r: "Hermano", p: "Niño que tiene el mismo padre y la misma madre que tú." },
+    { r: "Hermana", p: "Niña que tiene el mismo padre y la misma madre que tú." },
+    { r: "Hombre", p: "Palabra para una persona adulta que no es mujer ni niño." },
+    { r: "Hijo de Dios", p: "Así llamamos a Jesús, porque su Padre es Dios." },
+    { r: "Hijo pródigo", p: "Parábola del joven que se fue de casa, gastó su dinero y su padre lo perdonó al volver." },
+    { r: "Herodes", p: "Rey malo que quiso hacer daño al Niño Jesús." },
+    { r: "Huerto", p: "Lugar con olivos donde Jesús oró la noche antes de ser apresado." },
+    { r: "Humildad", p: "Virtud de no creerse más importante que los demás." },
+    { r: "Hostia", p: "Pan especial que se convierte en el Cuerpo de Jesús durante la Misa." },
+    { r: "Hosanna", p: "Palabra de alegría que gritaba la gente cuando Jesús entró en Jerusalén sobre un burrito." },
+    { r: "Hambre", p: "Sensación que sientes cuando tu cuerpo necesita comer." },
+    { r: "Higuera", p: "Árbol sin fruto que Jesús hizo secar." },
+    { r: "Hebreos", p: "Otro nombre para el pueblo de Israel en la Biblia." },
+    { r: "Huida a Egipto", p: "Viaje que hicieron María, José y el Niño Jesús para escapar de un rey malo." },
+  ],
+  I: [
+    { r: "Iglesia", p: "Edificio donde los cristianos se reúnen para rezar y celebrar la Misa." },
+    { r: "Israel", p: "Nombre del pueblo elegido por Dios, y también el nuevo nombre que Dios dio a Jacob." },
+    { r: "Isaac", p: "Hijo de Abraham que Dios pidió como sacrificio, pero fue salvado por un ángel." },
+    { r: "Isaías", p: "Profeta que anunció muchos años antes que Jesús iba a nacer." },
+    { r: "Incienso", p: "Humo con olor bonito que se usa en la Misa y que llevaron los Reyes Magos a Jesús." },
+    { r: "Infierno", p: "Lugar triste donde van las personas que no quieren estar con Dios para siempre." },
+    { r: "Inmaculada", p: "Nombre que recuerda que María nació sin ningún pecado." },
+    { r: "Isabel", p: "Prima de María y madre de San Juan Bautista." },
+    { r: "Imagen", p: "Estatua o dibujo que representa a Jesús o a un santo." },
+    { r: "Ídolo", p: "Estatua falsa que la gente adoraba en vez de adorar al Dios verdadero." },
+    { r: "Inocentes", p: "Niños pequeños que Herodes mandó matar porque buscaba a Jesús." },
+    { r: "Imitar", p: "Hacer lo mismo que hace otra persona porque queremos seguir su ejemplo." },
+    { r: "Invierno", p: "Estación del año en la que hace más frío y a veces cae nieve." },
+    { r: "Ilusión", p: "Ganas y alegría por algo bonito que va a pasar." },
+    { r: "Iglesia católica", p: "Comunidad de todos los cristianos que siguen al Papa como su guía." },
+  ],
+  J: [
+    { r: "Jesús", p: "Hijo de Dios que nació en Belén y es el centro de nuestra fe." },
+    { r: "José", p: "Esposo de María y padre adoptivo de Jesús, que trabajaba la madera." },
+    { r: "Jerusalén", p: "Ciudad santa donde está el templo y donde Jesús murió y resucitó." },
+    { r: "Judas", p: "Apóstol que traicionó a Jesús por dinero." },
+    { r: "Juan", p: "Apóstol al que Jesús quería mucho y escribió uno de los cuatro Evangelios." },
+    { r: "Jacob", p: "Hijo de Isaac que tuvo doce hijos, que luego formaron doce tribus." },
+    { r: "Jonás", p: "Profeta al que se tragó un gran pez cuando no quería obedecer a Dios." },
+    { r: "Jordán", p: "Río donde Juan Bautista bautizaba a la gente, y también a Jesús." },
+    { r: "Job", p: "Hombre muy bueno que sufrió mucho pero nunca dejó de confiar en Dios." },
+    { r: "Josué", p: "Jefe que llevó al pueblo de Israel a la tierra prometida después de Moisés." },
+    { r: "Juicio", p: "Día en que Dios decidirá si hemos sido buenos o malos." },
+    { r: "Justicia", p: "Virtud de dar a cada uno lo que le corresponde." },
+    { r: "Jueves Santo", p: "Día en que Jesús cenó con sus apóstoles por última vez." },
+    { r: "Juan Bautista", p: "Primo de Jesús que bautizaba en el río y anunció su llegada." },
+    { r: "Jericó", p: "Ciudad cuyas murallas cayeron al sonar las trompetas del pueblo de Israel." },
+  ],
+  K: [
+    { r: "Kilo", p: "Unidad que se usa para pesar cosas, como el azúcar o la fruta.", contiene: true },
+    { r: "Kilómetro", p: "Unidad que se usa para medir distancias largas entre dos lugares.", contiene: true },
+    { r: "Kilos de pan", p: "Cantidad de pan que podrías comprar en la panadería para toda la familia.", contiene: true },
+    { r: "Kermés", p: "Fiesta con puestos de juegos y comida para recaudar dinero.", contiene: true },
+    { r: "Kermés parroquial", p: "Fiesta con puestos de juegos y comida que organiza la iglesia del barrio para recaudar dinero.", contiene: true },
+    { r: "Kipa", p: "Gorro pequeño y redondo que llevan en la cabeza los hombres judíos.", contiene: true },
+    { r: "Kiko", p: "Apodo cariñoso que se usa para el nombre Francisco, como el del Papa.", contiene: true },
+    { r: "Koinonía", p: "Palabra griega que nombra la amistad y la unión entre los primeros cristianos.", contiene: true },
+    { r: "Kerigma", p: "Palabra griega que nombra el anuncio de que Jesús murió y resucitó por nosotros.", contiene: true },
+    { r: "Kyrie", p: "Palabra griega que significa Señor y que se dice al principio de la Misa.", contiene: true },
+    { r: "Kirie eleison", p: "Frase que se repite tres veces al principio de la Misa pidiendo perdón a Dios.", contiene: true },
+    { r: "Kénosis", p: "Palabra que explica cómo Jesús, siendo Dios, se hizo pequeño y humilde como un hombre.", contiene: true },
+    { r: "Kirié", p: "Forma corta de nombrar la oración de la Misa en la que pedimos a Dios que tenga piedad de nosotros.", contiene: true },
+    { r: "Kadosh", p: "Palabra hebrea que significa santo y que se usa para hablar de Dios.", contiene: true },
+    { r: "Kairós", p: "Palabra griega que nombra el momento especial que Dios elige para que pase algo importante.", contiene: true },
+  ],
+  L: [
+    { r: "Luz", p: "Lo contrario de la oscuridad, lo que nos deja ver las cosas." },
+    { r: "Lázaro", p: "Amigo de Jesús al que resucitó después de cuatro días muerto." },
+    { r: "Lucas", p: "Discípulo que era médico y viajó junto a San Pablo contando la Buena Noticia." },
+    { r: "Lucas Evangelista", p: "Uno de los cuatro que escribió la vida de Jesús, y el que más habla de la Virgen María." },
+    { r: "Lavatorio", p: "Momento en que Jesús lavó los pies a sus apóstoles antes de la Última Cena." },
+    { r: "Leproso", p: "Enfermo de la piel al que Jesús sanó con solo tocarlo." },
+    { r: "León", p: "Animal fuerte y con melena al que llaman el rey de la selva." },
+    { r: "Limosna", p: "Dinero o comida que se da a quien lo necesita." },
+    { r: "Ley", p: "Conjunto de normas que hay que cumplir, como los diez mandamientos." },
+    { r: "Libro", p: "Objeto con hojas y páginas que sirve para leer, como la Biblia." },
+    { r: "Lámpara", p: "Objeto que alumbra para que no estemos a oscuras." },
+    { r: "Lengua", p: "Parte de la boca que usamos para hablar y para saborear la comida." },
+    { r: "Ladrón", p: "Persona que roba cosas que no son suyas." },
+    { r: "Lucha", p: "Esfuerzo grande que hacemos para conseguir algo difícil o vencer una dificultad." },
+    { r: "Lourdes", p: "Lugar de Francia donde la Virgen María se apareció a una niña llamada Bernadette." },
+  ],
+  M: [
+    { r: "María", p: "Mamá de Jesús, también llamada la Virgen." },
+    { r: "Moisés", p: "Profeta que guio al pueblo de Israel y lo sacó de Egipto." },
+    { r: "Madre", p: "Mujer que tiene hijos y los quiere y cuida mucho." },
+    { r: "Misa", p: "Celebración de los católicos en la que el sacerdote convierte el pan y el vino en Jesús." },
+    { r: "Milagro", p: "Algo increíble y maravilloso que solo Dios puede hacer." },
+    { r: "Mateo", p: "Apóstol que antes de seguir a Jesús cobraba impuestos, y escribió uno de los Evangelios." },
+    { r: "Marcos", p: "Escribió el Evangelio más corto de los cuatro que hay en la Biblia." },
+    { r: "Magos", p: "Visitantes que vinieron de Oriente siguiendo una estrella para ver al Niño Jesús." },
+    { r: "Mandamientos", p: "Diez normas que Dios dio a Moisés para vivir bien." },
+    { r: "Maná", p: "Comida especial que Dios envió del cielo para alimentar al pueblo de Israel en el desierto." },
+    { r: "María Magdalena", p: "Mujer que fue la primera en ver a Jesús resucitado." },
+    { r: "Marta", p: "Hermana de Lázaro que recibió a Jesús en su casa y se puso a cocinar para él." },
+    { r: "Multiplicación", p: "Milagro en el que Jesús hizo que unos pocos panes y peces alcanzaran para alimentar a miles de personas." },
+    { r: "Mesías", p: "Nombre que significa el elegido y con el que se esperaba al salvador prometido por Dios." },
+    { r: "Manto", p: "Prenda larga que se pone sobre los hombros, parecida a una capa." },
+  ],
+  N: [
+    { r: "Navidad", p: "Fiesta cristiana en la que celebramos que Jesús vino al mundo, el 25 de diciembre." },
+    { r: "Noé", p: "Hombre que construyó una gran barca para salvar a su familia y a los animales de un diluvio." },
+    { r: "Nacimiento", p: "Maqueta con figuritas que representa el día en que Jesús vino al mundo, y que se pone en las casas cada mes de diciembre." },
+    { r: "Nazaret", p: "Pueblo donde Jesús vivió de pequeño con María y José." },
+    { r: "Niño Jesús", p: "Nombre cariñoso que le damos a Jesús cuando era un bebé, en el belén." },
+    { r: "Nube", p: "Cosa blanca y esponjosa que vemos en el cielo, de donde a veces cae la lluvia." },
+    { r: "Nochebuena", p: "Noche del 24 de diciembre en la que las familias se reúnen para cenar juntas." },
+    { r: "Naturaleza", p: "Todo lo que Dios creó, como las plantas y los animales." },
+    { r: "Nombre", p: "Palabra con la que te llaman tus padres y tus amigos." },
+    { r: "Nilo", p: "Río de Egipto en el que la hermana de Moisés escondió a su hermano bebé dentro de una cesta." },
+    { r: "Natividad", p: "Palabra culta que se usa para hablar del día en que Jesús vino al mundo, como en el nombre de muchas iglesias." },
+    { r: "Novena", p: "Conjunto de nueve días de oración que se hacen antes de una fiesta importante." },
+    { r: "Nuevo Testamento", p: "Parte de la Biblia que cuenta la vida de Jesús y los primeros años de la Iglesia." },
+    { r: "Nínive", p: "Ciudad grande a la que Dios envió a un profeta para que la gente se arrepintiera de sus pecados." },
+    { r: "Noche Santa", p: "Nombre muy bonito que un villancico usa para la noche en que nació Jesús." },
+  ],
+  "Ñ": [
+    { r: "Niño", p: "Jesús fue este tipo de persona cuando nació en Belén.", contiene: true },
+    { r: "Niña", p: "Chica de corta edad, como las amigas de Jesús.", contiene: true },
+    { r: "Señor", p: "Palabra con la que llamamos a Dios, mostrando mucho respeto.", contiene: true },
+    { r: "Señora", p: "Forma respetuosa de llamar a una mujer, como a la Virgen María.", contiene: true },
+    { r: "Enseñanza", p: "Lo que aprendes cuando un maestro te explica algo.", contiene: true },
+    { r: "Sueño", p: "Lo que ves en tu mente mientras duermes.", contiene: true },
+    { r: "Rebaño", p: "Grupo de ovejas que cuida un pastor.", contiene: true },
+    { r: "Corderiño", p: "Cría tierna de la oveja.", contiene: true },
+    { r: "Pequeño", p: "Que no es grande, de tamaño chico.", contiene: true },
+    { r: "Compañero", p: "Amigo con quien compartes el colegio o el juego.", contiene: true },
+    { r: "Montaña", p: "Elevación de tierra muy grande y alta, como los Pirineos.", contiene: true },
+    { r: "Castaña", p: "Fruto marrón que se come asado en otoño.", contiene: true },
+    { r: "Año", p: "Tiempo que dura desde enero hasta diciembre.", contiene: true },
+    { r: "Cumpleaños", p: "Día en que celebras que naciste, con tarta y velas.", contiene: true },
+    { r: "Cariño", p: "Sentimiento de amor y ternura hacia alguien.", contiene: true },
+  ],
+  O: [
+    { r: "Oración", p: "Momento en que hablamos con Dios, por ejemplo con el Padrenuestro." },
+    { r: "Oveja", p: "Animal que da lana y hace 'beee'." },
+    { r: "Obispo", p: "Jefe de los sacerdotes de una ciudad o región, usa un sombrero especial llamado mitra." },
+    { r: "Ofrenda", p: "Regalo especial que se da a Dios, por ejemplo en la misa." },
+    { r: "Oído", p: "Parte del cuerpo con la que escuchamos los sonidos." },
+    { r: "Olivo", p: "Árbol que da aceitunas." },
+    { r: "Oro", p: "Metal amarillo y brillante, muy valioso." },
+    { r: "Órgano", p: "Instrumento musical grande con teclas, que suena en muchas iglesias." },
+    { r: "Oseas", p: "Profeta de la Biblia que habló del gran amor de Dios por su pueblo." },
+    { r: "Obediencia", p: "Hacer caso a lo que te piden tus padres o Dios." },
+    { r: "Oscuridad", p: "Lo contrario de la luz." },
+    { r: "Ojo", p: "Parte de la cara con la que vemos." },
+    { r: "Oeste", p: "Lugar del cielo por donde se pone el sol." },
+    { r: "Ocho", p: "Número que va justo después del siete." },
+    { r: "Orden sacerdotal", p: "Sacramento por el que un hombre se convierte en sacerdote." },
+  ],
+  P: [
+    { r: "Pedro", p: "Apóstol pescador que negó tres veces conocer a Jesús." },
+    { r: "Pablo", p: "Apóstol que antes se llamaba Saulo y escribió muchas cartas en la Biblia." },
+    { r: "Padre", p: "Así llamamos a Dios, y también al hombre que cuida de sus hijos en casa." },
+    { r: "Papa", p: "Jefe de toda la Iglesia Católica; vive en Roma, en el Vaticano." },
+    { r: "Pascua", p: "Fiesta en la que celebramos que Jesús resucitó." },
+    { r: "Pan", p: "Alimento que, en la misa, se convierte en el Cuerpo de Cristo." },
+    { r: "Paloma", p: "Ave blanca que representa al Espíritu Santo." },
+    { r: "Pecado", p: "Cuando hacemos algo malo que ofende a Dios." },
+    { r: "Perdón", p: "Lo que pedimos cuando hacemos algo malo, para que nos disculpen." },
+    { r: "Pastor", p: "Persona que cuida un rebaño de ovejas." },
+    { r: "Pesebre", p: "Lugar donde comen los animales, y donde nació Jesús en Belén." },
+    { r: "Parábola", p: "Historia sencilla que contaba Jesús para enseñar algo importante." },
+    { r: "Pentecostés", p: "Día en que el Espíritu Santo bajó sobre los apóstoles." },
+    { r: "Profeta", p: "Persona elegida por Dios para anunciar sus mensajes." },
+    { r: "Pilato", p: "Gobernador romano que permitió que crucificaran a Jesús." },
+  ],
+  Q: [
+    { r: "Querer", p: "Sentir mucho amor y cariño por alguien.", contiene: true },
+    { r: "Querubín", p: "Tipo de ángel especial que aparece en varias partes de la Biblia.", contiene: true },
+    { r: "Quinto mandamiento", p: "Mandamiento que dice que no debes matar a nadie.", contiene: true },
+    { r: "Quince misterios", p: "Así se llama a todos los misterios del Rosario contados juntos: cinco gozosos, cinco dolorosos y cinco gloriosos.", contiene: true },
+    { r: "Raquel", p: "Mujer de la Biblia, esposa del patriarca Jacob.", contiene: true },
+    { r: "Ezequiel", p: "Profeta del Antiguo Testamento que tuvo visiones muy especiales.", contiene: true },
+    { r: "Zaqueo", p: "Hombre bajito que subió a un árbol para poder ver a Jesús.", contiene: true },
+    { r: "Pequeño", p: "Lo contrario de grande.", contiene: true },
+    { r: "Riqueza", p: "Tener mucho dinero y muchas cosas.", contiene: true },
+    { r: "Banquete", p: "Comida especial y abundante, como en una fiesta grande.", contiene: true },
+    { r: "Bosque", p: "Lugar con muchos árboles.", contiene: true },
+    { r: "Esquina", p: "Punto donde se juntan dos calles.", contiene: true },
+    { r: "Saqueo", p: "Cuando un grupo roba todo con violencia, por ejemplo durante una guerra.", contiene: true },
+    { r: "Sequía", p: "Cuando pasa mucho tiempo sin llover y falta el agua.", contiene: true },
+    { r: "Quedarse", p: "Permanecer en un lugar y no marcharse.", contiene: true },
+  ],
+  R: [
+    { r: "Resurrección", p: "El hecho de que Jesús, después de morir en la cruz, volvió a estar vivo." },
+    { r: "Reyes Magos", p: "Los tres sabios de Oriente que, guiados por una estrella, visitaron a Jesús recién nacido." },
+    { r: "Rosario", p: "Oración que se dice con cuentas, recordando momentos de la vida de Jesús y María." },
+    { r: "Reino de Dios", p: "El lugar y la forma en que Dios gobierna con amor; Jesús hablaba mucho de esto." },
+    { r: "Ramos", p: "Domingo antes de Semana Santa, cuando se bendicen palmas y olivo." },
+    { r: "Rezar", p: "Hablar con Dios, por ejemplo antes de dormir o antes de comer." },
+    { r: "Rey", p: "Hombre que gobierna un país y lleva corona." },
+    { r: "Roma", p: "Ciudad de Italia donde vive el Papa." },
+    { r: "Roca", p: "Piedra muy grande y dura." },
+    { r: "Río", p: "Corriente de agua que fluye hacia el mar." },
+    { r: "Redentor", p: "Nombre que se da a Jesús porque nos salva del pecado." },
+    { r: "Rut", p: "Mujer de la Biblia muy fiel a su suegra Noemí." },
+    { r: "Rafael", p: "Arcángel que aparece en el libro de Tobías." },
+    { r: "Resucitar", p: "Volver a vivir después de haber muerto, como hizo Jesús." },
+    { r: "Religión", p: "Asignatura del colegio en la que aprendemos sobre Dios y la fe." },
+  ],
+  S: [
+    { r: "Santo", p: "Así se llama a quien vivió muy cerca de Dios y ya está en el cielo." },
+    { r: "Salomón", p: "Rey muy sabio, hijo del rey David." },
+    { r: "Samuel", p: "Profeta que, siendo niño, escuchó la voz de Dios en el templo." },
+    { r: "Sara", p: "Esposa de Abraham. Tuvo un hijo siendo ya muy mayor." },
+    { r: "Sansón", p: "Hombre muy fuerte del Antiguo Testamento. Su fuerza estaba en su pelo." },
+    { r: "Sacramento", p: "Signo que nos da la gracia de Dios, como el Bautismo." },
+    { r: "Salvador", p: "Nombre de Jesús. Significa que nos libra del pecado." },
+    { r: "Sagrario", p: "Lugar de la iglesia donde se guarda la Eucaristía." },
+    { r: "Sacerdote", p: "Hombre que celebra la Misa." },
+    { r: "Semana Santa", p: "Días en que recordamos la pasión, muerte y resurrección de Jesús." },
+    { r: "Samaritano", p: "En una parábola, hombre de este pueblo ayudó a un herido en el camino." },
+    { r: "Serpiente", p: "Animal que engañó a Eva en el paraíso." },
+    { r: "Sol", p: "Astro que da luz y calor durante el día." },
+    { r: "Sinaí", p: "Monte donde Dios dio los diez mandamientos a Moisés." },
+    { r: "San José", p: "Esposo de la Virgen María y padre adoptivo de Jesús." },
+  ],
+
+  T: [
+    { r: "Trinidad", p: "Un solo Dios en tres personas: Padre, Hijo y Espíritu Santo." },
+    { r: "Templo", p: "Casa grande donde los judíos rezaban a Dios, en Jerusalén." },
+    { r: "Tomás", p: "Apóstol que dudó de la resurrección hasta tocar las heridas de Jesús." },
+    { r: "Tierra", p: "Planeta en el que vivimos." },
+    { r: "Tentación", p: "Cuando algo nos invita a hacer el mal." },
+    { r: "Testamento", p: "Cada una de las dos partes en que se divide la Biblia." },
+    { r: "Torre de Babel", p: "Construcción altísima que los hombres quisieron levantar hasta el cielo." },
+    { r: "Tumba", p: "Lugar donde pusieron el cuerpo de Jesús después de morir." },
+    { r: "Tabor", p: "Monte donde Jesús se mostró lleno de luz delante de tres apóstoles." },
+    { r: "Tablas de la Ley", p: "Donde estaban escritos los diez mandamientos." },
+    { r: "Túnica", p: "Prenda de vestir larga que se usaba en tiempos de Jesús." },
+    { r: "Trigo", p: "Cereal con el que se hace el pan." },
+    { r: "Tres Reyes Magos", p: "Vinieron de Oriente guiados por una estrella para adorar a Jesús." },
+    { r: "Tormenta", p: "Jesús calmó una de estas en el mar, con viento y olas fuertes." },
+    { r: "Traición", p: "Lo que hizo Judas al entregar a Jesús." },
+  ],
+
+  U: [
+    { r: "Última Cena", p: "Comida que Jesús compartió con sus apóstoles antes de morir. Allí instituyó la Eucaristía." },
+    { r: "Unción", p: "Nombre que se da a la acción de poner aceite sagrado sobre alguien en un sacramento." },
+    { r: "Unidad", p: "Cuando varias personas están muy unidas, como un solo grupo." },
+    { r: "Universo", p: "Todo lo que existe: las estrellas, los planetas y el espacio." },
+    { r: "Uno", p: "Número que va antes del dos." },
+    { r: "Uva", p: "Fruta pequeña y redonda, morada o verde, con la que se hace el vino." },
+    { r: "Uvas", p: "Muchas de esas frutas juntas, colgando en racimo de la vid." },
+    { r: "Ungir", p: "Verbo que significa poner aceite sagrado sobre una persona, para bendecirla o darle una misión, como a un rey." },
+    { r: "Ungido", p: "Palabra que significa 'elegido por Dios con aceite sagrado'. Es un título de Jesús, el Cristo." },
+    { r: "Unigénito", p: "Palabra que usamos para decir que Jesús es el único Hijo de Dios." },
+    { r: "Ur", p: "Ciudad de la que salió Abraham para ir a la tierra prometida." },
+    { r: "Urías", p: "Personaje de la Biblia, un soldado del rey David." },
+    { r: "Urim", p: "Objeto sagrado que usaba el sumo sacerdote judío, junto al Tumim, para conocer la voluntad de Dios." },
+    { r: "Unción de los enfermos", p: "Sacramento que reciben las personas muy enfermas, con aceite especial, para pedir fuerza y consuelo." },
+    { r: "Un solo Dios", p: "Creencia católica de que existe una sola divinidad, aunque sea tres personas." },
+  ],
+
+  V: [
+    { r: "Virgen", p: "Así llamamos a María porque Jesús nació de ella por el poder del Espíritu Santo." },
+    { r: "Vida", p: "Lo contrario de la muerte. Es lo que tenemos mientras existimos." },
+    { r: "Vino", p: "Bebida que Jesús convirtió en su sangre durante la última cena." },
+    { r: "Verdad", p: "Lo contrario de la mentira." },
+    { r: "Vaticano", p: "Ciudad pequeña donde vive el Papa, en Roma." },
+    { r: "Vía Crucis", p: "Camino con catorce paradas que recuerda los pasos de Jesús hacia la cruz." },
+    { r: "Viernes Santo", p: "Día de la Semana Santa en que recordamos la muerte de Jesús en la cruz." },
+    { r: "Velas", p: "Objetos de cera que se encienden y dan luz. Se usan mucho en la iglesia." },
+    { r: "Venida", p: "Llegada de alguien importante, como la de Jesús al mundo." },
+    { r: "Voz", p: "Sonido que sale de nuestra boca cuando hablamos o cantamos." },
+    { r: "Visita", p: "Cuando vamos a ver a alguien, como hizo María a su prima Isabel." },
+    { r: "Virtud", p: "Buena costumbre, como la bondad o la paciencia." },
+    { r: "Vecino", p: "Persona que vive cerca de nuestra casa." },
+    { r: "Voluntad", p: "Lo que alguien quiere o decide hacer." },
+    { r: "Viuda", p: "Mujer cuyo marido ha muerto." },
+  ],
+  W: [
+    { r: "Yahweh", p: "Nombre sagrado que Dios dijo a Moisés junto a la zarza que ardía sin quemarse", contiene: true },
+    { r: "YHWH", p: "Las cuatro letras hebreas sagradas que forman el nombre de Dios", contiene: true },
+    { r: "Web católica", p: "Página de internet con noticias y temas de la Iglesia católica", contiene: true },
+    { r: "Web de la parroquia", p: "Página de internet de la iglesia de tu barrio", contiene: true },
+    { r: "Web bíblica", p: "Página de internet donde puedes leer la Biblia", contiene: true },
+    { r: "Web del Vaticano", p: "Página de internet oficial de la ciudad donde vive el Papa, en Roma", contiene: true },
+    { r: "Web de catequesis", p: "Página de internet con actividades para aprender la fe", contiene: true },
+    { r: "Web de Cáritas", p: "Página de internet de la organización católica que ayuda a los más pobres", contiene: true },
+    { r: "Web misionera", p: "Página de internet sobre los que viajan a anunciar a Jesús en otros países", contiene: true },
+    { r: "Web del Papa", p: "Página de internet con los mensajes y noticias del obispo de Roma", contiene: true },
+    { r: "Web cristiana", p: "Página de internet sobre la fe en Jesucristo, para todo tipo de cristianos", contiene: true },
+    { r: "Web de oración", p: "Página de internet con textos para hablar con Dios", contiene: true },
+    { r: "Web del colegio", p: "Página de internet de tu centro de estudios", contiene: true },
+    { r: "Web de la diócesis", p: "Página de internet del obispo y las parroquias de tu zona", contiene: true },
+    { r: "Web del Evangelio", p: "Página de internet para leer la vida de Jesús contada por los evangelistas", contiene: true },
+  ],
+  X: [
+    { r: "Éxodo", p: "Libro de la Biblia que cuenta cómo el pueblo de Israel salió de Egipto", contiene: true },
+    { r: "Crucifixión", p: "Forma en que mataron a Jesús, clavado de pies y manos en lo alto", contiene: true },
+    { r: "Expulsión", p: "Echar a alguien fuera de un lugar", contiene: true },
+    { r: "Explicar", p: "Decir algo de forma que se entienda bien", contiene: true },
+    { r: "Examen", p: "Prueba que se hace en el colegio para ver lo que sabes", contiene: true },
+    { r: "Exorcismo", p: "Rito de la Iglesia para echar al demonio de una persona", contiene: true },
+    { r: "Exaltar", p: "Alabar mucho a alguien, decir lo grande que es", contiene: true },
+    { r: "Expiación", p: "Reparar una culpa o un pecado", contiene: true },
+    { r: "Exilio", p: "Tiempo en que un pueblo vive fuera de su tierra, obligado a marcharse", contiene: true },
+    { r: "Sexto mandamiento", p: "Uno de los diez mandamientos, que habla de ser fiel en el amor", contiene: true },
+    { r: "Próximo", p: "Lo que viene justo después, lo más cercano en el tiempo", contiene: true },
+    { r: "Texto bíblico", p: "Un trozo escrito de la Biblia", contiene: true },
+    { r: "Reflexión", p: "Pensar con calma sobre algo", contiene: true },
+    { r: "Exclamación", p: "Frase que se dice con mucha fuerza o sorpresa, como \"¡qué alegría!\"", contiene: true },
+    { r: "Experiencia", p: "Lo que aprendes al vivir algo", contiene: true },
+  ],
+  Y: [
+    { r: "Yavé", p: "Nombre que los judíos usaban para llamar a Dios, con mucho respeto", contiene: true },
+    { r: "Yugo", p: "Pieza de madera que se pone sobre el cuello de los bueyes para que tiren juntos del arado", contiene: true },
+    { r: "Yo soy", p: "Las palabras que dijo Dios cuando Moisés le preguntó su nombre", contiene: true },
+    { r: "Ayuda", p: "Lo que le das a alguien cuando lo necesita", contiene: true },
+    { r: "Ayuno", p: "No comer durante un tiempo, como hacemos en Cuaresma", contiene: true },
+    { r: "Rey", p: "Persona que gobierna un país y lleva corona", contiene: true },
+    { r: "Reyes", p: "Los tres sabios que vinieron de Oriente a adorar al Niño Jesús", contiene: true },
+    { r: "Ley", p: "Norma que hay que cumplir, como los diez mandamientos", contiene: true },
+    { r: "Proyecto", p: "Plan que se hace para conseguir algo", contiene: true },
+    { r: "Mayor", p: "Lo que tiene más tamaño o más edad que otra cosa", contiene: true },
+    { r: "Cayado", p: "Bastón largo que usan los pastores para guiar a las ovejas", contiene: true },
+    { r: "Yerno", p: "El marido de tu hija", contiene: true },
+    { r: "Hoy", p: "El día en el que estamos ahora mismo", contiene: true },
+    { r: "Yendo", p: "Estar en camino hacia un lugar", contiene: true },
+    { r: "Yacimiento", p: "Lugar donde se encuentran restos antiguos enterrados, como en arqueología", contiene: true },
+  ],
+  Z: [
+    { r: "Zaqueo", p: "Hombre bajito que se subió a un árbol para ver pasar a Jesús", contiene: true },
+    { r: "Zacarías", p: "Padre de san Juan Bautista, que se quedó mudo hasta que nació su hijo", contiene: true },
+    { r: "Zabulón", p: "Uno de los doce hijos de Jacob, que dio nombre a una tribu de Israel", contiene: true },
+    { r: "Zorro", p: "Animal con el pelo rojizo y mucha astucia, que vive en el campo", contiene: true },
+    { r: "Zarza ardiente", p: "Arbusto que ardía sin quemarse, donde Dios habló a Moisés", contiene: true },
+    { r: "Nazaret", p: "Pueblo donde Jesús vivió de pequeño con María y José", contiene: true },
+    { r: "Lázaro", p: "Amigo de Jesús al que resucitó después de cuatro días muerto", contiene: true },
+    { r: "Bautizar", p: "Echar agua sobre alguien para hacerlo cristiano", contiene: true },
+    { r: "Paz", p: "Lo contrario de la guerra, vivir tranquilos y en calma", contiene: true },
+    { r: "Luz", p: "Lo que nos permite ver, lo contrario de la oscuridad", contiene: true },
+    { r: "Cruz", p: "Objeto con dos palos, uno vertical y otro horizontal, símbolo de los cristianos", contiene: true },
+    { r: "Diez", p: "El número que va justo después del nueve", contiene: true },
+    { r: "Pez", p: "Animal que vive en el agua y respira por branquias", contiene: true },
+    { r: "Corazón", p: "Órgano que bombea la sangre por todo el cuerpo", contiene: true },
+    { r: "Resurrección", p: "Cuando Jesús volvió a la vida después de morir en el Calvario", contiene: true },
+  ],
+  },
+  secundaria: {
   A: [
     { r: "Abraham", p: "Dios le pidió que dejara su tierra. Fue el padre del pueblo de Israel." },
     { r: "Adán", p: "El primer hombre que creó Dios." },
@@ -638,10 +1105,8 @@ const DATA = {
   ],
   K: [
     { r: "Kyrie", p: "Palabra griega que se dice al empezar la Misa. Con ella pedimos perdón a Dios." },
-    { r: "Kipá", p: "Gorrito pequeño que los hombres judíos llevan en la cabeza." },
-    { r: "Kosher", p: "Palabra para la comida que los judíos pueden comer según sus normas." },
-    { r: "Kolbe", p: "Santo sacerdote de Polonia. Murió para salvar a otro preso." },
   ],
+  // Primaria K - eliminadas: Kipá, Kosher, Kolbe
 
   L: [
     { r: "Lázaro", p: "Amigo de Jesús. Jesús lo resucitó después de cuatro días muerto." },
@@ -801,12 +1266,12 @@ const DATA = {
     { r: "Oriente", p: "Lugar de donde vinieron los Reyes Magos siguiendo la estrella." },
     { r: "Obras", p: "Buenas acciones que hacemos por amor a Dios y a los demás." },
     { r: "Orante", p: "Persona que reza mucho y con mucho amor." },
-    { r: "Óbolo", p: "Pequeña moneda que una viuda pobre dio en el templo." },
     { r: "Ofertorio", p: "Momento de la Misa en que se presentan el pan y el vino." },
     { r: "Oratorio", p: "Lugar pequeño para rezar, como una capillita." },
     { r: "Omnipotente", p: "Palabra que dice que Dios lo puede todo." },
     { r: "Oficio", p: "Trabajo o tarea de una persona. También son las oraciones que rezan cada día los religiosos." },
   ],
+  // Primaria O - eliminadas: Óbolo (vocabulario arcaico/demasiado tecnico para el nivel)
 
   P: [
     { r: "Pedro", p: "Primer Papa de la Iglesia. Antes de seguir a Jesús, era pescador." },
@@ -889,7 +1354,6 @@ const DATA = {
     { r: "Risa de Sara", p: "Lo que hizo la esposa de Abraham cuando le dijeron que tendría un hijo de mayor." },
     { r: "Rito", p: "Conjunto de gestos y palabras que se hacen en la Misa y los sacramentos." },
   ],
-
   S: [
     { r: 'Salomón', p: 'Era un rey muy sabio. Era hijo del rey David.' },
     { r: 'Samuel', p: 'De niño vivía en el templo. Un día oyó la voz de Dios.' },
@@ -1019,10 +1483,9 @@ const DATA = {
     { r: 'Vida nueva', p: 'Esto lo recibimos por el Bautismo y porque Jesús resucitó.' },
   ],
   W: [
-    { r: "Wojtyla", p: "El apellido de un Papa de Polonia muy querido: San Juan Pablo II." },
-    { r: "Wenceslao", p: "Príncipe santo de hace mucho tiempo. Una canción de Navidad muy famosa habla de él." },
     { r: "Yahweh", p: "Nombre santo de Dios. Se lo dijo a Moisés junto a una zarza que ardía sin quemarse.", contiene: true }
   ],
+  // Primaria W - eliminadas: Wojtyla (apellido de Papa, dato demasiado concreto), Wenceslao (santo histórico muy poco conocido, no es cultura general básica)
 
   X: [
     { r: "Éxodo", p: "Libro de la Biblia que habla de la salida de Egipto del pueblo de Israel.", contiene: true },
@@ -1033,9 +1496,9 @@ const DATA = {
     { r: "Genuflexión", p: "Gesto de doblar la rodilla para saludar a Jesús en el sagrario.", contiene: true },
     { r: "Sexto mandamiento", p: "Mandamiento de Dios que habla de ser fieles y puros.", contiene: true },
     { r: "Expulsión del paraíso", p: "Lo que pasó a Adán y Eva después de comer la fruta prohibida.", contiene: true },
-    { r: "Reflexión", p: "Pensar con calma en algo importante de nuestra fe.", contiene: true },
-    { r: "Exaltación de la Cruz", p: "Fiesta del 14 de septiembre. Ese día la Iglesia honra la cruz de Jesús.", contiene: true }
+    { r: "Reflexión", p: "Pensar con calma en algo importante de nuestra fe.", contiene: true }
   ],
+  // Primaria X - eliminadas: Exaltación de la Cruz (fiesta muy concreta con fecha exacta, no es una fiesta principal del año litúrgico)
 
   Y: [
     { r: "Yahvé", p: "Nombre santo de Dios. Se lo dijo a Moisés en la zarza que ardía." },
@@ -1088,7 +1551,7 @@ const DATA = {
   ],
 
   },
-  secundaria: {
+  bachillerato: {
   A: [
     { r: "Alianza", p: "Pacto que Dios estableció con su pueblo, renovado a lo largo de la historia de la salvación." },
     { r: "Apocalipsis", p: "Último libro del Nuevo Testamento, escrito por san Juan, lleno de símbolos sobre el fin de los tiempos." },
@@ -1098,9 +1561,6 @@ const DATA = {
     { r: "Acólito", p: "Ministerio laico que ayuda al sacerdote en el altar durante la misa." },
     { r: "Adoración", p: "Actitud de reconocer a Dios como el único Señor, como la que tuvieron los Reyes Magos ante el Niño." },
     { r: "Agar", p: "Esclava egipcia de Sara que fue madre de Ismael." },
-    { r: "Ágape", p: "Palabra griega que designa el amor desinteresado, usada también para las comidas fraternales de los primeros cristianos." },
-    { r: "Agustín", p: "Obispo de Hipona y gran doctor de la Iglesia, autor de las 'Confesiones'." },
-    { r: "Alba", p: "Vestidura blanca que el sacerdote se pone debajo de la casulla." },
     { r: "Amós", p: "Profeta pastor que denunció la injusticia social en el reino de Israel." },
     { r: "Antioquía", p: "Ciudad donde, según los Hechos de los Apóstoles, los seguidores de Jesús fueron llamados 'cristianos' por primera vez." },
     { r: "Apostolado", p: "Misión de anunciar el Evangelio encomendada por Jesús a los Doce y, en cierto modo, a todo bautizado." },
@@ -1120,11 +1580,17 @@ const DATA = {
     { r: "Arcángel", p: "Categoría de ángel especialmente importante en la jerarquía celestial, como Gabriel o Miguel." },
     { r: "Alabanza", p: "Oración que glorifica a Dios por lo que él es, sin pedir nada a cambio." },
     { r: "Antiguo Testamento", p: "Conjunto de libros sagrados anteriores a la venida de Cristo, compartidos con la tradición judía." },
+    { r: "Arca de la Alianza", p: "Caja sagrada que guardaba las tablas con los Diez Mandamientos." },
+    { r: "Apócrifo", p: "Se dice de un texto religioso que la Iglesia no reconoce como parte de la Biblia." },
+    { r: "Ateísmo", p: "Postura de quien no cree que exista Dios." },
+    { r: "Agnosticismo", p: "Postura de quien dice que no se puede saber si Dios existe o no." },
+    { r: "Aureola", p: "Círculo de luz que se pinta sobre la cabeza de los santos en los cuadros." },
+    { r: "Anatema", p: "Condena muy fuerte que la Iglesia usaba contra quien se apartaba gravemente de la fe." },
+    { r: "Apostasía", p: "Abandono total y público de la fe que antes se tenía." },
   ],
   B: [
     { r: "Baal", p: "Dios pagano cananeo al que muchos israelitas rindieron culto, denunciado por los profetas." },
     { r: "Babilonia", p: "Imperio que destruyó Jerusalén y llevó al pueblo judío al exilio en el siglo VI a.C." },
-    { r: "Báculo", p: "Bastón pastoral que lleva el obispo como símbolo de su autoridad de pastor." },
     { r: "Bartimeo", p: "Ciego de Jericó que recuperó la vista gracias a su fe en Jesús." },
     { r: "Beatificación", p: "Paso previo a la canonización, por el que la Iglesia declara a alguien 'bienaventurado'." },
     { r: "Belcebú", p: "Nombre dado al príncipe de los demonios en los Evangelios." },
@@ -1135,8 +1601,6 @@ const DATA = {
     { r: "Booz", p: "Pariente rico de Noemí que se casó con Rut." },
     { r: "Bienaventuranzas", p: "Conjunto de ocho proclamaciones con las que Jesús invierte los criterios habituales de felicidad, llamando dichosos a los pobres o los perseguidos." },
     { r: "Bautisterio", p: "Lugar de una iglesia destinado a la celebración del bautismo." },
-    { r: "Bula", p: "Documento pontificio solemne, llamado así por el sello de plomo que lo autentica, como el que proclama un año jubilar." },
-    { r: "Breviario", p: "Libro con el que los clérigos rezan la Liturgia de las Horas." },
     { r: "Benedictinos", p: "Orden monástica fundada siguiendo la regla de 'ora et labora'." },
     { r: "Becerro de oro", p: "Ídolo que el pueblo de Israel fabricó y adoró mientras Moisés estaba en el monte Sinaí." },
     { r: "Bálsamo", p: "Sustancia aromática usada para ungir o perfumar, mencionada en el relato de la sepultura de Jesús." },
@@ -1152,6 +1616,8 @@ const DATA = {
     { r: "Baruc", p: "Secretario del profeta Jeremías que da nombre a un libro del Antiguo Testamento." },
     { r: "Belsasar", p: "Rey babilónico que vio una misteriosa escritura en la pared, interpretada por Daniel." },
     { r: "Benjamín", p: "Hijo menor de Jacob y de Raquel, que murió al darlo a luz, y hermano del vendido en Egipto por sus hermanos." },
+    { r: "Bula", p: "Documento oficial y solemne firmado por el Papa." },
+    { r: "Báculo", p: "Bastón que usan el Papa y los obispos como signo de su autoridad." },
   ],
   C: [
     { r: "Cafarnaúm", p: "Ciudad a orillas del lago de Galilea donde Jesús vivió buena parte de su vida pública." },
@@ -1174,9 +1640,6 @@ const DATA = {
     { r: "Cónclave", p: "Reunión de los cardenales encerrados para elegir a un nuevo Papa." },
     { r: "Cesarea", p: "Ciudad costera donde el centurión Cornelio se convirtió al cristianismo." },
     { r: "Cefas", p: "Nombre arameo que Jesús dio a Simón y que significa 'piedra'." },
-    { r: "Cisma", p: "Ruptura de la unidad de la Iglesia, como la que separó a Oriente y Occidente en 1054." },
-    { r: "Colosenses", p: "Carta de san Pablo dirigida a una comunidad cristiana de Asia Menor." },
-    { r: "Crónicas", p: "Par de libros del Antiguo Testamento que repasan la historia de Israel desde una perspectiva sacerdotal." },
     { r: "Cantar de los Cantares", p: "Libro poético del Antiguo Testamento que celebra el amor entre los esposos." },
     { r: "Caifás", p: "Sumo sacerdote judío ante quien fue juzgado Jesús." },
     { r: "Cornelio", p: "Centurión romano de Cesarea, considerado el primer gentil convertido al cristianismo según los Hechos." },
@@ -1184,6 +1647,12 @@ const DATA = {
     { r: "Ciro", p: "Rey persa que permitió a los judíos exiliados regresar a Jerusalén." },
     { r: "Cuaresma", p: "Periodo litúrgico de cuarenta días, en memoria de los días de Jesús en el desierto, marcado por la penitencia y la conversión hacia la Pascua." },
     { r: "Canonización", p: "Acto solemne por el que el Papa declara santo a un fiel difunto." },
+    { r: "Canon", p: "Lista oficial de libros que la Iglesia reconoce como parte de la Biblia." },
+    // REVISAR: la idea de que los primeros cristianos se escondían y celebraban el culto habitualmente en las catacumbas durante las persecuciones es una simplificación tradicional que algunos historiadores matizan (eran sobre todo cementerios)
+    { r: "Catacumbas", p: "Galerías bajo tierra en Roma donde los primeros cristianos enterraban a sus muertos." },
+    { r: "Constantino", p: "Emperador romano que terminó con la persecución a los cristianos." },
+    { r: "Clero", p: "Conjunto de personas consagradas al servicio de la Iglesia, como sacerdotes y obispos." },
+    { r: "Cisma", p: "Gran división o ruptura dentro de la Iglesia." },
   ],
   D: [
     { r: "Denario", p: "Moneda romana de plata mencionada en varias parábolas de Jesús, como la del buen samaritano." },
@@ -1206,7 +1675,6 @@ const DATA = {
     { r: "Domund", p: "Jornada mundial de las misiones, en la que la Iglesia pide oración y ayuda económica para la labor evangelizadora." },
     { r: "Dolorosa", p: "Advocación mariana venerada especialmente en la Semana Santa española, que recuerda los dolores de María junto a la cruz de su Hijo." },
     { r: "Divinidad", p: "Naturaleza propia de Dios, que la fe cristiana reconoce también en Jesucristo." },
-    { r: "Dedicación", p: "Rito solemne por el que un templo se consagra al culto divino." },
     { r: "Diluvio", p: "Catástrofe universal que, según el Génesis, solo sobrevivieron Noé, su familia y los animales del arca." },
     { r: "Daniel", p: "Profeta que interpretó los sueños del rey de Babilonia y permaneció fiel a su fe pese a la amenaza de una muerte segura." },
     { r: "Domingo de Ramos", p: "Día que abre la Semana Santa y recuerda la entrada mesiánica de Jesús en Jerusalén." },
@@ -1216,6 +1684,9 @@ const DATA = {
     { r: "Dan", p: "Una de las doce tribus de Israel, llamada así por uno de los hijos de Jacob." },
     { r: "Dagón", p: "Divinidad filistea cuyo ídolo cayó postrado ante el Arca de la Alianza." },
     { r: "Desierto", p: "Lugar árido donde el pueblo de Israel vagó cuarenta años tras salir de Egipto." },
+    { r: "Doctor de la Iglesia", p: "Título que da el Papa a santos muy sabios, como Santa Teresa de Jesús o Santo Tomás de Aquino." },
+    // REVISAR: la tradición que vincula a santo Domingo de Guzmán con el origen del rosario mediante una aparición mariana es una piadosa tradición cuya historicidad discuten algunos estudiosos
+    { r: "Domingo de Guzmán", p: "Fundador de la Orden de los Dominicos, relacionado por la tradición con el origen del rosario." },
   ],
   E: [
     { r: "Eclesiastés", p: "Libro sapiencial del Antiguo Testamento que reflexiona sobre la vanidad de las cosas humanas." },
@@ -1229,7 +1700,6 @@ const DATA = {
     { r: "Evangelización", p: "Tarea de anunciar la Buena Noticia de Jesucristo a todos los pueblos." },
     { r: "Epifanía", p: "Fiesta que celebra la manifestación de Jesús como salvador a los pueblos paganos, representados por los Reyes Magos venidos de Oriente." },
     { r: "Escriba", p: "Experto en la ley judía que, junto a los fariseos, discutía frecuentemente con Jesús." },
-    { r: "Esenios", p: "Grupo religioso judío del tiempo de Jesús, relacionado por muchos estudiosos con los manuscritos del mar Muerto." },
     { r: "Excomunión", p: "Pena canónica más grave, que excluye temporalmente a un fiel de la comunión eclesial." },
     { r: "Exorcismo", p: "Rito por el que la Iglesia, en nombre de Jesús, pide la liberación de la influencia del demonio." },
     { r: "Ecumenismo", p: "Esfuerzo de las distintas confesiones cristianas por recuperar la unidad querida por Cristo." },
@@ -1248,6 +1718,8 @@ const DATA = {
     { r: "Elías", p: "Gran profeta del reino del norte que se enfrentó a los sacerdotes de Baal en el monte Carmelo." },
     { r: "Edén", p: "Lugar primigenio de armonía entre el ser humano, la creación y Dios, perdido tras el pecado original según el relato del Génesis." },
     { r: "Evangelista", p: "Título dado a Mateo, Marcos, Lucas y Juan como autores de los relatos canónicos sobre Jesús, cada uno representado tradicionalmente por un símbolo distinto." },
+    { r: "Edicto de Milán", p: "Decreto del año 313 que dio libertad religiosa a los cristianos en el Imperio Romano." },
+    { r: "Escritura", p: "Otro nombre para la Biblia, también llamada 'Sagrada ___'." },
   ],
   F: [
     { r: "Filisteos", p: "Pueblo del Mediterráneo, enemigo tradicional de Israel, al que pertenecía Goliat." },
@@ -1258,9 +1730,6 @@ const DATA = {
     { r: "Fermento", p: "Elemento que, mezclado con la masa, la hace crecer; Jesús lo usó como imagen del Reino." },
     { r: "Fervor", p: "Entusiasmo e intensidad con que se vive la fe." },
     { r: "Fidelidad", p: "Cualidad de quien se mantiene firme en su compromiso con Dios." },
-    { r: "Filemón", p: "Carta breve de san Pablo sobre el esclavo Onésimo." },
-    { r: "Festo", p: "Gobernador romano ante quien Pablo fue juzgado en Cesarea." },
-    { r: "Félix", p: "Procurador romano que mantuvo preso a Pablo durante dos años." },
     { r: "Frutos del Espíritu", p: "Dones como el amor, la alegría y la paz que menciona san Pablo en su carta a los Gálatas." },
     { r: "Funeral", p: "Celebración cristiana en la que se encomienda a un difunto a Dios." },
     { r: "Fundador", p: "Persona que inicia una orden religiosa o institución de la Iglesia." },
@@ -1272,14 +1741,14 @@ const DATA = {
     { r: "Felipe", p: "Apóstol que presentó a Natanael a Jesús y preguntó por el Padre en la Última Cena." },
     { r: "Fuente bautismal", p: "Recipiente de la iglesia donde se celebra el sacramento del Bautismo." },
     { r: "Fanatismo", p: "Actitud de defender una creencia con una intransigencia contraria a la caridad cristiana." },
-    { r: "Fiesta de los Tabernáculos", p: "Celebración judía, también llamada Sukot, que recuerda el paso del pueblo por el desierto." },
     { r: "Flagelación", p: "Castigo con azotes que Jesús sufrió antes de ser crucificado." },
-    { r: "Fiat", p: "Palabra latina con la que se resume el 'hágase' de María en la Anunciación." },
     { r: "Fe", p: "Virtud teologal por la que se cree en Dios y en lo que Él revela." },
     { r: "Francisco Javier", p: "Misionero jesuita, patrono de las misiones, que evangelizó en Asia." },
-    { r: "Filipos", p: "Ciudad de Macedonia donde Pablo fundó la primera comunidad cristiana de Europa." },
     { r: "Familia", p: "Comunidad formada por padres e hijos, llamada por la Iglesia 'Iglesia doméstica'." },
     { r: "Fuego", p: "Elemento que descendió sobre los apóstoles en Pentecostés en forma de lenguas." },
+    { r: "Fiat", p: "Palabra latina que significa 'hágase'. Es la respuesta de María al ángel en la Anunciación." },
+    { r: "Fenicios", p: "Antiguo pueblo del Mediterráneo, vecino de Israel, famoso por el comercio y la navegación." },
+    { r: "Concilio de Florencia", p: "Concilio del siglo XV que buscó la unión con las Iglesias de Oriente y definió que son siete los sacramentos.", contiene: true },
   ],
   G: [
     { r: "Gólgota", p: "Monte cercano a Jerusalén, también llamado calvario, donde fue crucificado Jesús." },
@@ -1287,12 +1756,8 @@ const DATA = {
     { r: "Gentiles", p: "Nombre que los judíos daban a los pueblos no judíos, a quienes también se dirigió el Evangelio." },
     { r: "Gálatas", p: "Carta de san Pablo que defiende la salvación por la fe frente a la sola observancia de la Ley." },
     { r: "Gedeón", p: "Juez de Israel que venció a los madianitas con solo trescientos hombres." },
-    { r: "Gabaón", p: "Ciudad cuyos habitantes engañaron a Josué para conseguir un pacto con Israel." },
-    { r: "Gamaliel", p: "Maestro fariseo, doctor de la Ley, que aconsejó prudencia ante los apóstoles." },
-    { r: "Gerasa", p: "Región donde Jesús curó a un hombre poseído, enviando los demonios a una piara de cerdos." },
     { r: "Génesis", p: "Primer libro de la Biblia, que narra la creación y los orígenes del pueblo elegido." },
     { r: "Gomorra", p: "Ciudad destruida junto a Sodoma por su maldad." },
-    { r: "Gosén", p: "Región de Egipto donde se asentó la familia de Jacob." },
     { r: "Gregorio", p: "Nombre de varios papas, entre ellos el que dio origen al canto litúrgico tradicional de la Iglesia." },
     { r: "Guadalupe", p: "Advocación mariana aparecida a san Juan Diego en México." },
     { r: "Genuflexión", p: "Gesto de doblar la rodilla en señal de adoración, especialmente ante el Santísimo." },
@@ -1303,8 +1768,6 @@ const DATA = {
     { r: "Goliat", p: "Gigante filisteo derrotado por David con una honda." },
     { r: "Gabriel", p: "Arcángel que anunció a María la concepción del Mesías." },
     { r: "Gaspar", p: "Uno de los magos de Oriente que adoraron al Niño Jesús." },
-    { r: "Gad", p: "Uno de los doce hijos de Jacob, cabeza de una tribu de Israel." },
-    { r: "Gomer", p: "Esposa infiel del profeta Oseas, símbolo de la infidelidad de Israel a Dios." },
     { r: "Gracia", p: "Don gratuito de Dios que nos hace partícipes de su vida." },
     { r: "Gozo", p: "Fruto del Espíritu Santo y nombre de uno de los grupos de misterios del Rosario." },
     { r: "Grano de mostaza", p: "Semilla minúscula con la que Jesús comparó el crecimiento del Reino de los Cielos." },
@@ -1312,21 +1775,16 @@ const DATA = {
     { r: "Generosidad", p: "Virtud de dar sin esperar nada a cambio, como hizo la viuda del óbolo." },
     { r: "Gruta", p: "Cavidad natural, como la de Belén, vinculada al nacimiento de Jesús." },
     { r: "Gratitud", p: "Actitud de reconocer y valorar los dones recibidos de Dios." },
+    { r: "Gregorio Magno", p: "Papa de finales del siglo VI. Le dio nombre a un famoso tipo de canto litúrgico." },
+    { r: "Gracia santificante", p: "Don de Dios que vive en el alma de la persona buena y la hace partícipe de la vida de Dios." },
   ],
   H: [
     { r: "Herejía", p: "Negación obstinada de una verdad de fe por parte de un bautizado." },
     { r: "Homilía", p: "Explicación que el sacerdote hace de la Palabra de Dios durante la misa." },
     { r: "Herodías", p: "Mujer que, a través de su hija, pidió la cabeza de Juan el Bautista." },
     { r: "Hipócrita", p: "Como llamó Jesús a quien aparenta ser bueno por fuera pero no lo es por dentro." },
-    { r: "Holocausto", p: "Sacrificio antiguo en el que la víctima se consumía totalmente en el fuego como ofrenda a Dios." },
-    { r: "Hebrón", p: "Ciudad donde está la cueva de Macpela, sepultura de los patriarcas." },
     { r: "Horeb", p: "Otro nombre del monte donde Dios se manifestó a Moisés en la zarza ardiente." },
-    { r: "Habacuc", p: "Profeta del Antiguo Testamento que cuestiona a Dios sobre la injusticia." },
-    // REVISAR: la tradición litúrgica sitúa la Transfiguración en el monte Tabor; el monte Hermón es solo una hipótesis alternativa entre algunos exegetas.
-    { r: "Hermón", p: "Monte al norte de Israel que algunos exegetas proponen como posible escenario de la Transfiguración." },
-    { r: "Herodianos", p: "Grupo judío partidario de la dinastía de Herodes, que se alió con los fariseos contra Jesús." },
     { r: "Hijo del Hombre", p: "Título mesiánico con el que Jesús se refería a sí mismo." },
-    { r: "Hisopo", p: "Planta usada para rociar con agua o sangre en los ritos de purificación." },
     { r: "Huida a Egipto", p: "Viaje de la Sagrada Familia para escapar de la persecución de Herodes." },
     { r: "Hábito", p: "Vestimenta característica de los religiosos y religiosas." },
     { r: "Hipona", p: "Ciudad del norte de África donde san Agustín fue obispo." },
@@ -1342,17 +1800,20 @@ const DATA = {
     { r: "Hermandad", p: "Asociación de fieles, muy ligada a la Semana Santa en España." },
     { r: "Higuera", p: "Árbol que Jesús maldijo por no dar fruto, como signo contra la esterilidad religiosa." },
     { r: "Huerto de los Olivos", p: "Lugar al pie del monte homónimo donde Jesús fue arrestado." },
-    { r: "Hiram", p: "Rey de Tiro que colaboró con Salomón en la construcción del Templo." },
     { r: "Hora santa", p: "Tiempo de adoración ante el Santísimo Sacramento, en memoria de la agonía de Jesús." },
     { r: "Historia sagrada", p: "Nombre tradicional dado al conjunto de relatos bíblicos." },
+    { r: "Hisopo", p: "Objeto que el sacerdote usa para echar agua bendita sobre la gente." },
+    { r: "Hugonotes", p: "Nombre de los protestantes franceses en los siglos XVI y XVII." },
+    { r: "Hanukkah", p: "Fiesta judía de las luces, en la que se encienden velas durante ocho días." },
+    // REVISAR: este término bíblico (sacrificio quemado) coincide con el nombre que hoy se usa para el genocidio judío del siglo XX; conviene aclararlo en clase para evitar confusión.
+    { r: "Holocausto", p: "En la Biblia, sacrificio en el que se quemaba por completo un animal ofrecido a Dios." },
+    { r: "Humanae vitae", p: "Documento del papa Pablo VI, del año 1968, sobre el matrimonio y la familia, que causó mucho debate." },
   ],
   I: [
     { r: "Idolatría", p: "Pecado de adorar a otra cosa o persona en lugar del único Dios verdadero." },
     { r: "Indulgencia", p: "Remisión de la pena temporal por los pecados, concedida por la Iglesia." },
-    { r: "Infalibilidad", p: "Dogma según el cual el Papa no se equivoca al definir solemnemente una verdad de fe." },
     { r: "Inmaculada Concepción", p: "Dogma que afirma que María fue concebida sin pecado original." },
     { r: "Inquisición", p: "Institución eclesiástica medieval y moderna encargada de perseguir la herejía." },
-    { r: "Isacar", p: "Uno de los doce hijos de Jacob, cabeza de una tribu de Israel." },
     { r: "Iscariote", p: "Apellido del apóstol que traicionó a Jesús." },
     { r: "Israelitas", p: "Descendientes de Jacob, miembros del pueblo elegido." },
     { r: "Isaías", p: "Profeta que anunció con gran claridad la figura del Siervo sufriente." },
@@ -1363,46 +1824,34 @@ const DATA = {
     { r: "Invocación", p: "Llamada o súplica dirigida a Dios o a un santo." },
     { r: "Iniciación cristiana", p: "Conjunto de sacramentos (Bautismo, Confirmación y Eucaristía) que incorporan a la Iglesia." },
     { r: "Ignacio de Loyola", p: "Fundador de la Compañía de Jesús." },
-    // REVISAR: la patronía sobre internet es una propuesta popular muy difundida, sin declaración oficial de la Santa Sede.
-    { r: "Isidoro", p: "Obispo y doctor de la Iglesia, autor de una gran enciclopedia medieval, a quien algunos proponen como patrono de internet." },
     { r: "Isaac", p: "Hijo de la promesa, que Abraham estuvo dispuesto a sacrificar en el monte Moria." },
     { r: "Ismael", p: "Hijo de Abraham y Agar, considerado antepasado de los pueblos árabes." },
     { r: "Imposición de manos", p: "Gesto litúrgico usado en la ordenación y en otros sacramentos para comunicar un don del Espíritu." },
     { r: "Inspiración", p: "Acción del Espíritu Santo sobre los autores que escribieron la Biblia." },
     { r: "Inocentes", p: "Niños de Belén asesinados por orden de Herodes." },
     { r: "Inmortalidad", p: "Cualidad del alma humana, que no muere con el cuerpo." },
-    { r: "Ireneo", p: "Padre de la Iglesia, obispo de Lyon, que combatió el gnosticismo." },
-    { r: "Iconoclasta", p: "Quien se opone al culto de las imágenes sagradas." },
     { r: "Ídolo", p: "Representación de una falsa divinidad, condenada en el primer mandamiento." },
     { r: "Israel", p: "Nombre dado a Jacob tras luchar con el ángel, origen del pueblo elegido." },
     { r: "Iglesia", p: "Comunidad de los bautizados, Cuerpo de Cristo." },
     { r: "Incienso", p: "Una de las ofrendas de los Reyes Magos al Niño Jesús." },
     { r: "Infierno", p: "Estado de separación definitiva de Dios por rechazo libre y consciente de su amor." },
+    { r: "Infalibilidad", p: "Dogma que dice que el Papa no se equivoca cuando define solemnemente una verdad de fe." },
+    { r: "Isidoro de Sevilla", p: "Santo español, obispo y Doctor de la Iglesia, famoso por escribir una gran enciclopedia medieval. Hoy se le considera patrón de Internet." },
   ],
   J: [
     { r: "Jubileo", p: "Año santo en el que la Iglesia concede gracias especiales e indulgencias." },
     { r: "Jeremías", p: "Profeta llamado 'el profeta llorón', que anunció la destrucción de Jerusalén." },
-    { r: "Jefté", p: "Juez de Israel que hizo un voto imprudente antes de una batalla." },
-    { r: "Jeroboam", p: "Primer rey del reino del norte tras la división de Israel." },
-    { r: "Jezabel", p: "Esposa del rey Acab, que impuso cultos idolátricos en Israel." },
-    { r: "Joel", p: "Profeta que anuncia el derramamiento del Espíritu sobre todo el pueblo." },
     { r: "Jonatán", p: "Hijo del rey Saúl, amigo fiel de David." },
-    { r: "Josafat", p: "Rey de Judá conocido por sus reformas religiosas." },
-    { r: "Josías", p: "Rey de Judá que promovió una gran reforma religiosa tras hallar el libro de la Ley." },
     { r: "Judit", p: "Heroína que salvó a su pueblo venciendo al general Holofernes." },
     { r: "Jueces", p: "Libro del Antiguo Testamento y también título de los líderes que gobernaron Israel antes de los reyes." },
     { r: "Jesé", p: "Padre de David, de cuya estirpe habla una profecía mesiánica." },
     { r: "Jetró", p: "Suegro de Moisés, sacerdote de Madián." },
-    { r: "Jaculatoria", p: "Breve oración espontánea de alabanza o súplica." },
     { r: "Jesuitas", p: "Orden religiosa fundada por san Ignacio de Loyola." },
-    { r: "Jerónimo", p: "Doctor de la Iglesia que tradujo la Biblia al latín, dando origen a la Vulgata." },
     { r: "José de Arimatea", p: "Discípulo que pidió el cuerpo de Jesús a Pilato y lo sepultó en su propia tumba." },
     { r: "Judá", p: "Hijo de Jacob del que proviene el nombre de un reino y de la tribu de David." },
     { r: "Jairo", p: "Jefe de la sinagoga cuya hija fue resucitada por Jesús." },
     { r: "Jafet", p: "Uno de los tres hijos de Noé." },
     { r: "Jerarquía", p: "Orden de autoridad en la Iglesia, formado por obispos, sacerdotes y diáconos." },
-    { r: "Joab", p: "General del ejército del rey David." },
-    { r: "Jope", p: "Puerto desde donde Jonás intentó huir de la misión que Dios le encomendó." },
     { r: "Juicio final", p: "Momento escatológico en que Cristo juzgará a vivos y muertos." },
     { r: "Job", p: "Protagonista de un libro bíblico que sufre pruebas terribles sin perder su fe en Dios." },
     { r: "Josué", p: "Sucesor de Moisés que condujo al pueblo a la conquista de la Tierra Prometida." },
@@ -1410,37 +1859,31 @@ const DATA = {
     { r: "Jordán", p: "Río en el que Juan el Bautista bautizaba y donde Jesús recibió el bautismo." },
     { r: "Judea", p: "Región del sur de Palestina donde se encuentra Jerusalén." },
     { r: "Jacob", p: "Patriarca que, tras luchar con un ángel, recibió el nombre de Israel." },
+    { r: "Jahvé", p: "Nombre propio de Dios revelado a Moisés en la zarza ardiente. Los judíos evitaban pronunciarlo por respeto." },
+    { r: "Jerónimo", p: "Santo que tradujo la Biblia al latín. Se le considera patrón de los traductores." },
+    { r: "Juan de la Cruz", p: "Santo español, poeta y místico, que escribió sobre la 'noche oscura' del alma." },
   ],
   K: [
     { r: "Kyrie", p: "Invocación griega repetida al inicio de la Misa, pidiendo la misericordia divina." },
-    { r: "Kipá", p: "Pequeño gorro que cubre la coronilla, usado por los varones judíos practicantes." },
-    { r: "Kosher", p: "Término que designa los alimentos aptos según las leyes judías de pureza alimentaria." },
-    { r: "Kolbe", p: "Franciscano polaco que se ofreció a morir en lugar de otro prisionero en Auschwitz." },
-    { r: "Kerigma", p: "Término griego que designa el anuncio primero y esencial de la fe cristiana: la muerte y resurrección de Jesús." },
-    { r: "Koiné", p: "Griego común en que fueron escritos los textos del Nuevo Testamento." },
-    { r: "Kempis", p: "Apellido con el que se conoce al autor de 'La imitación de Cristo', Tomás de ese nombre." },
-    { r: "Kénosis", p: "Término teológico que designa el despojamiento de Cristo al hacerse hombre, descrito en la carta a los Filipenses." },
-    { r: "Kyrios", p: "Título griego traducido como Señor, aplicado a Jesucristo resucitado en las primeras comunidades cristianas." },
-    { r: "Yom Kipur", p: "Festividad judía del Día del Perdón, la más solemne del calendario hebreo.", contiene: true },
-    { r: "Hanukkah", p: "Fiesta judía de las luces que recuerda la purificación del Templo por los Macabeos.", contiene: true },
+    { r: "Kolbe", p: "Sacerdote polaco que se ofreció a morir en el campo de concentración de Auschwitz, en el lugar de otro preso." },
+    { r: "Kyrie eleison", p: "Expresión griega que se dice en la Misa y significa 'Señor, ten piedad'." },
+    { r: "Yom Kipur", p: "Fiesta judía del perdón, el día más sagrado del año para los judíos." },
+    { r: "Hanukkah", p: "Fiesta judía de las luces, que dura ocho días." },
+    { r: "Kyrios", p: "Palabra griega que significa 'Señor', usada para llamar a Jesús resucitado." },
+    // REVISAR: la autoría de "La imitación de Cristo" se atribuye tradicionalmente a Tomás de Kempis, aunque algunos estudiosos la discuten.
+    { r: "Kempis", p: "Autor medieval al que se atribuye un libro espiritual muy conocido, 'La imitación de Cristo'." },
+    { r: "Koiné", p: "Nombre del griego común en el que se escribió el Nuevo Testamento." },
+    { r: "Kaaba", p: "Edificio sagrado de La Meca hacia el que rezan los musulmanes." },
   ],
-
   L: [
     { r: "Levítico", p: "Tercer libro del Pentateuco, centrado en las leyes de pureza y el culto sacerdotal." },
     { r: "Levita", p: "Miembro de la tribu de Israel dedicada al servicio del culto y del templo." },
     { r: "Liturgia", p: "Conjunto de ritos y celebraciones oficiales de la Iglesia, como la Misa o los sacramentos." },
-    { r: "Lamentaciones", p: "Libro bíblico, atribuido tradicionalmente a Jeremías, que llora la destrucción de Jerusalén." },
-    { r: "Laodicea", p: "Una de las siete Iglesias de Asia a las que se dirige el libro del Apocalipsis, reprochada por su tibieza." },
     { r: "Labán", p: "Tío de Jacob y padre de Lea y Raquel." },
-    { r: "Lidia", p: "Mujer comerciante de púrpura, convertida por san Pablo en Filipos." },
     { r: "Letanía", p: "Oración formada por invocaciones breves repetidas, como las dedicadas a la Virgen." },
     { r: "Laico", p: "Miembro del pueblo de Dios que no ha recibido las órdenes sagradas ni pertenece a la vida consagrada." },
     { r: "Lepra", p: "Enfermedad de la piel que en tiempos de Jesús provocaba el aislamiento social del enfermo." },
-    { r: "Leviatán", p: "Monstruo marino mencionado en el libro de Job como símbolo del poder del caos." },
-    { r: "Limbo", p: "Estado teológico, hoy no sostenido formalmente, que se atribuía a quienes morían sin bautismo pero sin culpa personal." },
-    { r: "Loyola", p: "Apellido del fundador de la Compañía de Jesús, san Ignacio." },
     { r: "Lucifer", p: "Nombre con el que se designa al ángel caído, identificado con Satanás." },
-    { r: "Lamec", p: "Descendiente de Caín, padre de Noé según el Génesis." },
     { r: "Leví", p: "Hijo de Jacob y Lea, origen de la tribu sacerdotal de Israel." },
     { r: "Leccionario", p: "Libro litúrgico que recoge las lecturas bíblicas para la Misa de cada día." },
     { r: "Ley mosaica", p: "Conjunto de preceptos entregado por Dios a través de Moisés al pueblo de Israel." },
@@ -1456,27 +1899,22 @@ const DATA = {
     { r: "Limosna", p: "Ayuda material que se da a los necesitados, una de las prácticas cuaresmales." },
     { r: "Lámpara", p: "Objeto que da luz, usado por Jesús en la parábola de las vírgenes prudentes y necias." },
     { r: "Libro de la Vida", p: "Registro simbólico mencionado en el Apocalipsis donde están escritos los nombres de los salvados." },
+    { r: "Lutero", p: "Monje agustino alemán que inició la Reforma protestante en el siglo XVI." },
+    // REVISAR: el limbo nunca fue un dogma definido y hoy la Iglesia no lo enseña como doctrina oficial; aquí se describe la versión popular más conocida.
+    { r: "Limbo", p: "Según una idea antigua y hoy abandonada, lugar donde iban las almas de los niños que morían sin ser bautizados." },
+    { r: "Lamentaciones", p: "Libro de la Biblia que expresa el dolor por la destrucción de Jerusalén." },
+    { r: "Loyola", p: "Apellido de san Ignacio, el fundador de los jesuitas." },
+    { r: "Logos", p: "Palabra griega que usa san Juan para llamar a Jesús 'la Palabra' de Dios." },
   ],
-
   M: [
     { r: "Magníficat", p: "Cántico de alabanza que pronuncia María al visitar a su prima Isabel." },
-    { r: "Malaquías", p: "Último libro de los profetas menores del Antiguo Testamento." },
-    { r: "Manasés", p: "Hijo de José y nieto de Jacob, origen de una de las tribus de Israel." },
-    { r: "Mardoqueo", p: "Pariente y protector de Ester en la corte persa." },
     { r: "Matías", p: "Apóstol elegido por sorteo para sustituir a Judas Iscariote." },
-    { r: "Melquisedec", p: "Rey y sacerdote de Salem que bendijo a Abraham con pan y vino." },
-    { r: "Miqueas", p: "Profeta del Antiguo Testamento que anunció que el Mesías nacería en Belén." },
-    { r: "Moab", p: "Pueblo vecino de Israel, descendiente de un hijo de Lot, del que procedía Rut." },
     { r: "Monasterio", p: "Edificio donde vive una comunidad de monjes o monjas dedicada a la oración y el trabajo." },
     { r: "Misterio", p: "Verdad de fe que supera la comprensión humana, como la Santísima Trinidad." },
     { r: "Mitra", p: "Tocado litúrgico que llevan los obispos en las celebraciones solemnes." },
     { r: "Monoteísmo", p: "Creencia en un único Dios, propia del judaísmo, el cristianismo y el islam." },
-    { r: "Macabeos", p: "Familia que lideró la revuelta judía contra la helenización forzada en el siglo II a.C." },
-    { r: "Magdala", p: "Localidad junto al lago de Galilea de donde era natural María Magdalena." },
-    { r: "Mical", p: "Hija de Saúl y primera esposa del rey David." },
     { r: "Miriam", p: "Hermana de Moisés que vigiló la cesta en la que fue depositado de niño en el Nilo." },
     { r: "Mesopotamia", p: "Región entre los ríos Tigris y Éufrates de donde procedía Abraham antes de partir hacia Canaán." },
-    { r: "Moloc", p: "Divinidad pagana a la que algunos pueblos vecinos de Israel llegaron a ofrecer sacrificios humanos." },
     { r: "Monte de los Olivos", p: "Lugar junto a Jerusalén desde donde, según los Evangelios, Jesús ascendió al cielo." },
     { r: "Mortificación", p: "Práctica de penitencia voluntaria para dominar las inclinaciones desordenadas." },
     { r: "Mesías", p: "Título que significa 'ungido' y que el pueblo judío esperaba como libertador enviado por Dios." },
@@ -1489,32 +1927,28 @@ const DATA = {
     { r: "Marcos", p: "Evangelista cuyo símbolo tradicional es el león, autor del Evangelio más breve." },
     { r: "Moisés", p: "Profeta y legislador que liberó al pueblo de Israel de la esclavitud en Egipto." },
     { r: "María Magdalena", p: "Discípula de Jesús, primera testigo de su resurrección según los Evangelios." },
+    { r: "Macabeos", p: "Familia judía que luchó por defender su fe y su templo frente a los griegos. De esta gesta viene la fiesta judía de Hanukkah." },
+    // REVISAR: las lecturas bíblicas de la Misa están propiamente en el Leccionario, aunque a veces se encuadernan junto con el Misal.
+    { r: "Misal", p: "Libro que usa el sacerdote en la Misa, con las oraciones y las lecturas." },
+    { r: "Menorá", p: "Candelabro de siete brazos, símbolo muy conocido del pueblo judío." },
+    { r: "Malaquías", p: "Último libro del Antiguo Testamento, escrito por un profeta." },
+    { r: "Mística", p: "Experiencia profunda de unión con Dios que viven algunos santos, como santa Teresa de Jesús." },
+    // REVISAR: la Biblia no precisa el grado exacto de parentesco entre ambos; algunas traducciones dicen "tío", otras "primo".
+    { r: "Mardoqueo", p: "Pariente de Ester que la ayudó a salvar al pueblo judío en Persia." },
   ],
-
   N: [
-    { r: "Nahúm", p: "Profeta menor que anunció la caída de la ciudad de Nínive." },
-    { r: "Nehemías", p: "Gobernador judío que dirigió la reconstrucción de las murallas de Jerusalén tras el exilio." },
-    { r: "Neftalí", p: "Hijo de Jacob, origen de una de las doce tribus de Israel." },
     { r: "Nicodemo", p: "Fariseo y miembro del sanedrín que visitó a Jesús de noche y luego participó en su sepultura." },
     { r: "Nicolás", p: "Obispo de Mira venerado como santo, origen de la tradición de Papá Noel." },
     { r: "Nínive", p: "Capital asiria a la que Dios envió a Jonás para anunciar su conversión." },
     { r: "Noemí", p: "Suegra de Rut, protagonista junto a ella del libro que lleva este último nombre." },
     { r: "Natanael", p: "Apóstol, identificado con Bartolomé, al que Jesús dijo haber visto bajo una higuera." },
-    { r: "Nazireo", p: "Persona consagrada por un voto especial que incluía no cortarse el cabello ni beber vino, como Sansón." },
     { r: "Novicio", p: "Persona que se prepara para la vida religiosa antes de profesar los votos definitivos." },
     { r: "Novena", p: "Ejercicio de piedad que consiste en rezar durante nueve días consecutivos." },
     { r: "Nabucodonosor", p: "Rey de Babilonia que conquistó Jerusalén y llevó al pueblo judío al exilio." },
-    { r: "Nabot", p: "Propietario de una viña que fue injustamente ejecutado por orden de la reina Jezabel." },
-    { r: "Naamán", p: "General sirio leproso que se curó al sumergirse siete veces en el río Jordán por consejo de Eliseo." },
-    { r: "Natán", p: "Profeta que reprendió al rey David por su pecado con Betsabé." },
-    { r: "Nicea", p: "Ciudad donde se celebró el primer gran concilio ecuménico de la Iglesia, en el año 325." },
-    { r: "Nuncio", p: "Representante diplomático del Papa ante un Estado o una organización internacional." },
     { r: "Nazareno", p: "Gentilicio que recibía Jesús por haber vivido en un pueblo de Galilea." },
     { r: "Natividad", p: "Palabra con la que se designa el nacimiento de Jesús en Belén." },
     { r: "Noé", p: "Patriarca que construyó un arca por orden de Dios para salvarse del diluvio." },
-    { r: "Neocatecumenal", p: "Camino de formación cristiana para adultos surgido en España en los años sesenta." },
     { r: "Nardo", p: "Perfume de gran valor con el que una mujer ungió a Jesús poco antes de su pasión." },
-    { r: "Nimrod", p: "Figura del Génesis descrita como poderoso cazador y constructor de reinos tras el diluvio." },
     { r: "Noviciado", p: "Periodo de formación y discernimiento previo a la profesión religiosa definitiva." },
     { r: "Nave", p: "Parte central de una iglesia, comprendida entre la entrada y el presbiterio." },
     { r: "Números", p: "Cuarto libro del Pentateuco, que narra el censo y la travesía de Israel por el desierto." },
@@ -1522,8 +1956,12 @@ const DATA = {
     { r: "Nuevo Testamento", p: "Conjunto de libros bíblicos que recogen la vida de Jesús y los inicios de la Iglesia." },
     { r: "Navidad", p: "Solemnidad cristiana que celebra el nacimiento de Jesucristo." },
     { r: "Nochebuena", p: "Noche previa al día de Navidad, de gran significado festivo y religioso." },
+    // REVISAR: el Credo que se reza en la Misa viene de los concilios de Nicea (325) y Constantinopla (381) combinados; aquí se simplifica a uno solo.
+    { r: "Nicea", p: "Ciudad donde se celebró un concilio muy importante en el siglo IV, origen del Credo que se reza en la Misa." },
+    { r: "Nuncio", p: "Representante del Papa en un país, como un embajador del Vaticano." },
+    { r: "Nimbo", p: "Círculo de luz que se pinta alrededor de la cabeza de Jesús, María o los santos en el arte." },
+    { r: "Naamán", p: "General sirio curado de la lepra por el profeta Eliseo, al bañarse en el río Jordán." },
   ],
-
   "Ñ": [
     { r: "Señor", p: "Título divino que traduce el tetragrama sagrado YHWH en muchas traducciones de la Biblia.", contiene: true },
     { r: "Enseñanza", p: "Contenido doctrinal que transmite la Iglesia a través del Magisterio.", contiene: true },
@@ -1542,10 +1980,7 @@ const DATA = {
     { r: "Leña", p: "Madera que, según Génesis, cargó Isaac mientras subía al monte donde su padre iba a ofrecer el sacrificio.", contiene: true },
     { r: "Engaño", p: "Estratagema de la serpiente que llevó a Eva a desobedecer el mandato divino en el Paraíso.", contiene: true },
     { r: "Caña", p: "Objeto hueco con el que, según el Evangelio, se ofreció a Jesús en la cruz una esponja empapada en vinagre.", contiene: true },
-    { r: "Fiesta de las Cabañas", p: "Festividad judía, también llamada Sucot, en recuerdo de la peregrinación por el desierto en tiendas improvisadas.", contiene: true },
     { r: "Paño de la Verónica", p: "Reliquia tradicional con la que una mujer limpió el rostro de Jesús camino del Calvario.", contiene: true },
-    { r: "Peñafort", p: "Apellido de un santo dominico español, compilador de decretales, patrono de los juristas.", contiene: true },
-    { r: "Ceñidor", p: "Cinturón o faja que forma parte de las vestiduras litúrgicas, como el cíngulo del sacerdote.", contiene: true },
     { r: "Soñador", p: "Apodo que recibía José, hijo de Jacob, por sus visiones sobre espigas y estrellas.", contiene: true },
     { r: "Nuestra Señora", p: "Título mariano habitual en las advocaciones, como el de Guadalupe o el de Fátima.", contiene: true },
     { r: "Viña", p: "Terreno de cultivo de la uva que Jesús usa como imagen de Israel y, en otra parábola, del Reino de los Cielos.", contiene: true },
@@ -1563,22 +1998,10 @@ const DATA = {
     { r: "Omnipresente", p: "Atributo divino que indica que Dios está presente en todo lugar a la vez." },
     { r: "Oratorio", p: "Capilla o lugar reservado para la oración, distinto de una parroquia." },
     { r: "Ordenación", p: "Sacramento por el cual un bautizado recibe el grado de diácono, presbítero u obispo." },
-    { r: "Oseas", p: "Profeta del Antiguo Testamento que comparó la relación de Dios con Israel con un matrimonio." },
     { r: "Omega", p: "Última letra del alfabeto griego, usada junto al Alfa para referirse a Cristo como principio y fin." },
-    { r: "Onésimo", p: "Esclavo fugitivo por quien el apóstol Pablo intercedió ante Filemón." },
     { r: "Ornamentos", p: "Vestiduras y objetos litúrgicos que usa el sacerdote durante la celebración." },
-    { r: "Ortodoxo", p: "Adjetivo que designa a las Iglesias orientales separadas de Roma tras el Gran Cisma de 1054." },
-    { r: "Ostensorio", p: "Objeto litúrgico de metal precioso donde se expone el Santísimo Sacramento." },
     { r: "Obras de misericordia", p: "Conjunto de catorce acciones corporales y espirituales de ayuda al prójimo." },
     { r: "Orden sacerdotal", p: "Otro nombre para el sacramento por el que un hombre se convierte en ministro de la Iglesia." },
-    { r: "Oblación", p: "Ofrenda que se presenta a Dios, especialmente en la liturgia eucarística." },
-    { r: "Oficio divino", p: "Conjunto de oraciones que la Iglesia reza en distintas horas del día, también llamado Liturgia de las Horas." },
-    // REVISAR: confirmar que el rey al que se refiere es el de la lepra tras ofrecer incienso (2 Crónicas 26); no confundir con otros reyes de nombre parecido.
-    { r: "Ozías", p: "Rey de Judá que enfermó de lepra tras ofrecer incienso en el templo sin ser sacerdote." },
-    { r: "Ofir", p: "Lugar de ubicación desconocida de donde el rey Salomón obtenía oro." },
-    // REVISAR: en la Biblia hay dos reyes con este nombre (uno de Israel, hijo de Acab, y otro de Judá); aquí se describe al primero.
-    { r: "Ocozías", p: "Rey de Israel, hijo de Acab y Jezabel, que reinó poco tiempo y murió tras una caída." },
-    { r: "Opus Dei", p: "Prelatura personal de la Iglesia católica, fundada en 1928 por san Josemaría Escrivá, que promueve la santidad en la vida ordinaria." },
     { r: "Oráculo", p: "Mensaje o respuesta que se consideraba transmitido por Dios a través de un profeta." },
     { r: "Obediencia", p: "Virtud que consiste en cumplir la voluntad de Dios, presente también en los votos religiosos." },
     { r: "Óleo", p: "Aceite consagrado que se usa en el Bautismo, la Confirmación, la Unción y la Ordenación." },
@@ -1589,8 +2012,12 @@ const DATA = {
     { r: "Ofrenda", p: "Don o regalo que se presenta a Dios como signo de entrega." },
     { r: "Oro", p: "Uno de los tres regalos de los Reyes Magos, símbolo de la realeza de Jesús." },
     { r: "Oriente", p: "Región de donde procedían los Magos que siguieron la estrella hasta Belén." },
+    { r: "Opus Dei", p: "Institución católica fundada en España por san Josemaría Escrivá en 1928. Enseña que el trabajo de cada día puede ayudar a hacerse santo." },
+    { r: "Omnipotencia", p: "Atributo de Dios que significa que Él lo puede todo." },
+    { r: "Ortodoxia", p: "Palabra que significa 'enseñanza correcta', conforme a la fe de la Iglesia. Lo contrario es la herejía." },
+    { r: "Ostensorio", p: "Objeto de oro o plata, con forma de sol, que se usa para mostrar la Eucaristía a los fieles, por ejemplo en la procesión del Corpus." },
+    { r: "Omnisciencia", p: "Atributo de Dios que significa que Él lo sabe todo." },
   ],
-
   P: [
     { r: "Patriarca", p: "Nombre dado a los antepasados del pueblo de Israel, como Abraham, Isaac y Jacob." },
     { r: "Pentateuco", p: "Conjunto de los cinco primeros libros del Antiguo Testamento, atribuidos a Moisés." },
@@ -1602,18 +2029,11 @@ const DATA = {
     { r: "Publicano", p: "Recaudador de impuestos despreciado por el pueblo judío, como Zaqueo o Mateo antes de ser apóstol." },
     { r: "Peregrinación", p: "Viaje realizado por motivos religiosos hacia un lugar santo, como Santiago o Jerusalén." },
     { r: "Penitencia", p: "Sacramento del perdón de los pecados, también llamado reconciliación o confesión." },
-    { r: "Parusía", p: "Término teológico que designa la segunda venida de Cristo al final de los tiempos." },
-    { r: "Patena", p: "Pequeño plato dorado donde se coloca la hostia durante la Misa." },
     { r: "Pila bautismal", p: "Recipiente con agua donde se administra el primer sacramento de la iniciación cristiana." },
     { r: "Potifar", alt: ["Putifar"], p: "Oficial egipcio, amo de José, cuya esposa lo acusó falsamente." },
-    { r: "Patmos", p: "Isla donde el apóstol Juan recibió las visiones del Apocalipsis." },
     { r: "Prójimo", p: "Toda persona a la que estamos llamados a amar como a nosotros mismos." },
-    { r: "Primado", p: "Dignidad o autoridad principal de un obispo sobre los demás de una nación o región." },
     { r: "Providencia", p: "Cuidado y gobierno de Dios sobre todas las cosas creadas." },
-    { r: "Prelado", p: "Clérigo con dignidad y jurisdicción eclesiástica, como un obispo o un abad." },
     { r: "Púlpito", p: "Plataforma elevada desde la que antiguamente se predicaba en las iglesias." },
-    { r: "Purificación", p: "Antiguo nombre de la fiesta de la Presentación del Señor, cuarenta días después de Navidad." },
-    { r: "Paráclito", p: "Nombre griego que significa 'defensor' o 'consolador', aplicado al Espíritu Santo." },
     { r: "Pecado original", p: "Falta cometida por Adán y Eva que se transmitió a toda la humanidad." },
     { r: "Pilato", p: "Prefecto romano de Judea que condenó a Jesús a la crucifixión." },
     { r: "Parábola", p: "Relato breve con el que Jesús enseñaba verdades espirituales usando imágenes de la vida cotidiana." },
@@ -1622,17 +2042,20 @@ const DATA = {
     { r: "Pascua", p: "Principal fiesta cristiana, que conmemora la resurrección de Cristo." },
     { r: "Pesebre", p: "Comedero de animales que se convirtió en la cuna de Jesús en Belén." },
     { r: "Procesión", p: "Desplazamiento solemne y ordenado de una comunidad religiosa, frecuente en Semana Santa." },
+    { r: "Profesión de fe", p: "Fórmula, como el Credo, que decimos en la Misa para afirmar en voz alta lo que creemos." },
+    { r: "Protestantismo", p: "Movimiento religioso que surgió de la Reforma de Lutero en el siglo XVI y se separó de la Iglesia Católica." },
+    { r: "Primado", p: "Título de honor del arzobispo de mayor rango de un país. En España lo lleva el arzobispo de Toledo." },
+    { r: "Palio", p: "Puede ser la tela que cubre a una Virgen o a un Cristo en una procesión de Semana Santa, o una prenda que el Papa entrega a los arzobispos." },
+    { r: "Papiro", p: "Material antiguo hecho con una planta de Egipto, usado para escribir antes de existir el papel. Algunos manuscritos bíblicos antiguos se conservan en este material." },
+    { r: "Pontificado", p: "Periodo de tiempo durante el que una misma persona ocupa la sede de Roma como cabeza de la Iglesia; por ejemplo, el de Juan Pablo II duró casi 27 años." },
+    { r: "Paráclito", p: "Palabra griega que significa 'defensor' o 'consolador'. Es otro nombre que se da al Espíritu Santo." },
   ],
-
   Q: [
     { r: "Querubín", p: "Categoría de ángeles de alto rango, representados custodiando el Arca de la Alianza." },
-    { r: "Qumrán", p: "Lugar junto al Mar Muerto donde se hallaron antiguos manuscritos bíblicos en el siglo XX." },
-    { r: "Quirino", p: "Gobernador romano de Siria mencionado por san Lucas en relación con el censo del nacimiento de Jesús." },
     { r: "Quinto mandamiento", p: "Mandamiento del Decálogo que prohíbe matar." },
     { r: "Zaqueo", contiene: true, p: "Jefe de publicanos de Jericó que se subió a un sicómoro para ver pasar a Jesús." },
     { r: "Joaquín", contiene: true, p: "Nombre con el que la tradición designa al padre de la Virgen María." },
     { r: "Ezequiel", contiene: true, p: "Profeta del exilio en Babilonia, autor de la visión de los huesos secos." },
-    { r: "Ezequías", contiene: true, p: "Rey de Judá conocido por su reforma religiosa y por pedir a Dios que alargara su vida." },
     { r: "Catequesis", contiene: true, p: "Formación en la fe cristiana dirigida a niños, jóvenes o adultos." },
     { r: "Catequista", contiene: true, p: "Persona laica o religiosa que imparte la formación cristiana a otros." },
     { r: "Banquete", contiene: true, p: "Imagen que usó Jesús en varias parábolas para describir el Reino de los Cielos." },
@@ -1647,7 +2070,6 @@ const DATA = {
     { r: "Antioquía", contiene: true, p: "Ciudad donde, según los Hechos de los Apóstoles, los discípulos de Jesús fueron llamados cristianos por primera vez." },
     { r: "Réquiem", contiene: true, p: "Nombre que recibe la misa de difuntos, tomado de las primeras palabras en latín de su introito." },
   ],
-
   R: [
     { r: "Rabino", p: "Maestro y guía religioso en el judaísmo, experto en la Ley." },
     { r: "Redención", p: "Liberación del pecado y la muerte obtenida por la pasión, muerte y resurrección de Cristo." },
@@ -1657,14 +2079,11 @@ const DATA = {
     { r: "Romanos", p: "Carta de san Pablo considerada una de las exposiciones más completas de su pensamiento sobre la fe y la justificación." },
     { r: "Rubén", p: "Primogénito de Jacob, que dio nombre a una de las doce tribus de Israel." },
     { r: "Rut", alt: ["Ruth"], p: "Protagonista de un libro del Antiguo Testamento, moabita y antepasada del rey David." },
-    { r: "Roboam", p: "Hijo de Salomón bajo cuyo reinado se dividió el reino en Israel y Judá." },
     { r: "Rahab", alt: ["Rajab"], p: "Mujer de Jericó que ayudó a los espías israelitas y fue salvada en la conquista de la ciudad." },
     { r: "Rafael", p: "Arcángel cuyo nombre significa 'medicina de Dios', protagonista del libro de Tobías." },
     { r: "Retablo", p: "Estructura decorada, a menudo con pinturas o esculturas, situada detrás del altar." },
     { r: "Resurrección", p: "Acontecimiento central de la fe cristiana por el que Cristo venció a la muerte al tercer día." },
     { r: "Rosario", p: "Devoción mariana estructurada en misterios que se reza con cuentas." },
-    { r: "Rogativa", p: "Oración pública, a veces en procesión, para pedir un bien o remediar una calamidad." },
-    { r: "Ritual", p: "Libro litúrgico o conjunto de normas que regulan la celebración de los sacramentos." },
     { r: "Revelación", p: "Manifestación que Dios hace de sí mismo y de su voluntad a la humanidad." },
     { r: "Rebeca", p: "Mujer elegida junto al pozo para ser esposa de Isaac." },
     { r: "Raquel", p: "Hija de Labán, esposa amada de Jacob, madre de José y Benjamín." },
@@ -1673,14 +2092,14 @@ const DATA = {
     { r: "Redentor", p: "Título de Cristo que subraya que pagó el precio de nuestra liberación del pecado." },
     { r: "Rico Epulón", p: "Personaje de una parábola que, vestido de púrpura, no socorrió al pobre Lázaro que yacía a su puerta." },
     { r: "Réquiem", p: "Nombre de la misa celebrada por los difuntos." },
-    { r: "Remanente", p: "Parte fiel del pueblo de Israel que, según los profetas, permanecería tras el castigo divino." },
     { r: "Religiosos", p: "Hombres y mujeres que viven consagrados a Dios mediante los votos de pobreza, castidad y obediencia." },
     { r: "Reino de Dios", p: "Realidad anunciada por Jesús como el señorío de Dios sobre los corazones y la historia." },
     { r: "Reyes Magos", p: "Sabios de Oriente que, guiados por una estrella, adoraron a Jesús recién nacido." },
     { r: "Ramos", p: "Domingo con el que comienza la Semana Santa, recordando la entrada de Jesús en Jerusalén." },
     { r: "Roma", p: "Sede del Papado y centro de la Iglesia católica desde los primeros siglos." },
+    { r: "Reforma", p: "Movimiento cristiano que comenzó en el siglo XVI con Martín Lutero y dio origen a las Iglesias protestantes." },
+    { r: "Reencarnación", p: "Creencia de religiones orientales según la cual el alma pasa a otro cuerpo después de morir. La fe cristiana no la acepta." },
   ],
-
   S: [
     { r: 'Sacrilegio', p: 'Falta grave de respeto hacia algo sagrado, como profanar la Eucaristía.' },
     { r: 'Saduceos', p: 'Grupo religioso judío de la época de Jesús que no creía en la resurrección de los muertos.' },
@@ -1693,14 +2112,9 @@ const DATA = {
     { r: 'Sinagoga', p: 'Edificio donde los judíos se reúnen para leer la Torá y orar.' },
     { r: 'Sion', p: 'Monte de Jerusalén que da nombre simbólico a la ciudad santa.' },
     { r: 'Sodoma', p: 'Ciudad destruida por su maldad junto a Gomorra, de donde escapó Lot.' },
-    { r: 'Sofonías', p: 'Profeta menor del Antiguo Testamento que anunció el "día del Señor".' },
     { r: 'Sotana', p: 'Vestidura negra tradicional de los sacerdotes.' },
     { r: 'Sumo sacerdote', p: 'Máxima autoridad religiosa judía, cargo que ocupó Caifás cuando juzgaron a Jesús.' },
-    { r: 'Sem', p: 'Hijo de Noé del que descienden los pueblos semitas.' },
-    { r: 'Set', p: 'Hijo de Adán y Eva, nacido tras la muerte de Abel.' },
-    { r: 'Silas', p: 'Compañero de san Pablo en varios de sus viajes misioneros.' },
     { r: 'Simeón', p: 'Anciano que reconoció al Mesías cuando María y José presentaron a Jesús en el templo.' },
-    { r: 'Salomé', p: 'Mujer que, junto a otras, fue al sepulcro de Jesús con perfumes.' },
     { r: 'Saulo', p: 'Nombre judío del apóstol que se convirtió camino de Damasco.' },
     { r: 'Sacramentales', p: 'Signos bendecidos por la Iglesia que preparan para recibir la gracia, como el agua bendita.' },
     { r: 'Sudario', p: 'Lienzo que cubría el rostro de Jesús en el sepulcro.' },
@@ -1712,6 +2126,9 @@ const DATA = {
     { r: 'Sábado', p: 'Día judío de descanso en memoria de la creación.' },
     { r: 'Sagrario', p: 'Lugar de la iglesia donde se reserva el Santísimo Sacramento.' },
     { r: 'Salmo', p: 'Composición poética de alabanza, atribuida en muchos casos al rey David.' },
+    { r: 'Sefardíes', p: 'Judíos de origen español, expulsados de España en 1492.' },
+    { r: 'Sabbat', p: 'Nombre judío del día de descanso semanal, el sábado.' },
+    { r: 'Sede vacante', p: 'Periodo sin Papa, entre la muerte o renuncia de uno y la elección del siguiente.' },
   ],
   T: [
     { r: 'Tabernáculo', p: 'Tienda sagrada portátil donde los israelitas guardaban el Arca de la Alianza en el desierto.' },
@@ -1719,22 +2136,12 @@ const DATA = {
     { r: 'Teología', p: 'Ciencia que estudia a Dios y las verdades de la fe con la ayuda de la razón.' },
     { r: 'Templarios', p: 'Orden militar y religiosa medieval fundada para proteger a los peregrinos en Tierra Santa.' },
     { r: 'Teresa de Ávila', p: 'Santa española, doctora de la Iglesia, reformadora de las carmelitas.' },
-    { r: 'Tesalonicenses', p: 'Carta de san Pablo dirigida a una comunidad cristiana de Grecia.' },
-    { r: 'Timoteo', p: 'Discípulo y colaborador de san Pablo, destinatario de dos cartas suyas.' },
-    { r: 'Tito', p: 'Discípulo de san Pablo al que dejó encargado de organizar la Iglesia en Creta.' },
     { r: 'Tobías', p: 'Protagonista de un libro del Antiguo Testamento, acompañado por el ángel Rafael en su viaje.' },
     { r: 'Torá', p: 'Nombre hebreo de los cinco primeros libros de la Biblia.' },
     { r: 'Transfiguración', p: 'Episodio en el que Jesús se mostró glorioso ante tres apóstoles en un monte.' },
     { r: 'Tradición', p: 'Junto a la Sagrada Escritura, una de las fuentes de la Revelación transmitida por la Iglesia.' },
     { r: 'Tribus de Israel', p: 'Doce grupos en que se organizaba el pueblo elegido, según los hijos de Jacob.' },
-    { r: 'Tiberíades', p: 'Ciudad junto al lago de Galilea, que también recibe este nombre.' },
-    { r: 'Tiberio', p: 'Emperador romano que gobernaba durante la vida pública de Jesús.' },
-    { r: 'Turíbulo', p: 'Recipiente metálico donde se quema el incienso en las celebraciones litúrgicas.' },
-    { r: 'Trinitarios', p: 'Orden religiosa fundada para la redención de cautivos cristianos.' },
     { r: 'Tiempo ordinario', p: 'Parte del año litúrgico fuera de Adviento, Navidad, Cuaresma y Pascua.' },
-    { r: 'Tetrarca', p: 'Título que tenía Herodes Antipas, gobernador de una cuarta parte de un territorio.' },
-    { r: 'Tamar', p: 'Mujer del Antiguo Testamento, nuera de Judá, que aparece en la genealogía de Jesús.' },
-    { r: 'Teófilo', p: 'Destinatario al que san Lucas dedica su evangelio y los Hechos de los Apóstoles.' },
     { r: 'Triduo pascual', p: 'Los tres días santos que van desde la misa vespertina del Jueves Santo hasta el domingo de Resurrección.' },
     { r: 'Tumba vacía', p: 'Signo que encontraron las mujeres la mañana de Pascua.' },
     { r: 'Talentos', p: 'Unidad de dinero antigua que da nombre a una parábola sobre unos siervos y su señor.' },
@@ -1744,22 +2151,21 @@ const DATA = {
     { r: 'Torre de Babel', p: 'Construcción con la que la humanidad intentó llegar al cielo y que causó la confusión de las lenguas.' },
     { r: 'Tomás', p: 'Apóstol conocido como "el incrédulo" por dudar de la resurrección.' },
     { r: 'Trinidad', p: 'Dogma que afirma un solo Dios en tres personas distintas.' },
+    { r: 'Talmud', p: 'Conjunto de comentarios y enseñanzas judías sobre la Ley, muy importante en el judaísmo.' },
+    { r: 'Tiara', p: 'Antigua corona de tres niveles que usaban los Papas.' },
+    { r: 'Tesalonicenses', p: 'Carta de san Pablo dirigida a la comunidad cristiana de una ciudad de Grecia.' },
+    { r: 'Transustanciación', p: 'Palabra que explica cómo el pan y el vino se convierten de verdad en el cuerpo y la sangre de Cristo.' },
   ],
   U: [
     { r: 'Unción de los enfermos', p: 'Sacramento que fortalece a los cristianos en una enfermedad grave.' },
     { r: 'Unigénito', p: 'Título que se da a Jesús como Hijo único de Dios Padre.' },
     { r: 'Ungido', p: 'Significado literal de la palabra "Mesías" o "Cristo".' },
     { r: 'Urías', p: 'Marido de Betsabé, enviado a morir en el frente por orden del rey David.' },
-    { r: 'Uriel', p: 'Uno de los arcángeles venerados en la tradición, junto a Miguel, Gabriel y Rafael.' },
     { r: 'Ur de los caldeos', p: 'Ciudad de origen de Abraham antes de partir hacia Canaán.', alt: ['Ur'] },
-    { r: 'Uzá', p: 'Hombre que murió al tocar el Arca de la Alianza sin autorización.' },
     { r: 'Última Cena', p: 'Comida pascual en la que Jesús instituyó la Eucaristía y el sacerdocio.' },
-    { r: 'Urbi et orbi', p: 'Bendición solemne que el Papa imparte "a la ciudad y al mundo".' },
-    { r: 'Urbano', p: 'Nombre que han llevado varios papas a lo largo de la historia de la Iglesia.' },
     { r: 'Usura', p: 'Pecado que consiste en cobrar un interés excesivo o injusto por un préstamo.' },
     { r: 'Unidad de los cristianos', p: 'Objetivo del movimiento ecuménico entre las distintas confesiones cristianas.' },
     { r: 'Úrsula', p: 'Santa que da nombre a una orden dedicada a la educación de las niñas.' },
-    { r: 'Uz', p: 'Región de origen del protagonista del libro de Job.' },
     { r: 'Universo', p: 'Conjunto de todo lo creado por Dios, visible e invisible.' },
     { r: 'Cuaresma', p: 'Tiempo litúrgico de cuarenta días de penitencia antes de la Pascua.', contiene: true },
     { r: 'Crucifixión', p: 'Forma de ejecución romana con la que murió Jesús.', contiene: true },
@@ -1776,6 +2182,11 @@ const DATA = {
     { r: 'Bula', p: 'Documento solemne expedido por el Papa.', contiene: true },
     { r: 'Indulgencia', p: 'Remisión de la pena temporal debida por los pecados ya perdonados.', contiene: true },
     { r: 'Jubileo', p: 'Año santo en que la Iglesia concede gracias e indulgencias especiales.', contiene: true },
+    { r: 'Uriel', p: 'Uno de los arcángeles, junto con Miguel, Gabriel y Rafael.' },
+    { r: 'Urbano II', p: 'Papa que predicó la primera cruzada a finales del siglo XI.' },
+    { r: 'Pentateuco', p: 'Nombre que reciben los cinco primeros libros de la Biblia.', contiene: true },
+    { r: 'Agustín', p: 'Santo y obispo de Hipona, autor de "Las Confesiones", uno de los grandes pensadores cristianos.', contiene: true },
+    { r: 'Urbi et orbi', p: 'Bendición que da el Papa "a la ciudad y al mundo" en fiestas como Navidad o Pascua.' },
   ],
   V: [
     { r: 'Vaticano', p: 'Estado donde reside el Papa y se encuentra la basílica de San Pedro.' },
@@ -1785,9 +2196,7 @@ const DATA = {
     { r: 'Visitación', p: 'Encuentro entre María, que esperaba a Jesús, y su prima, que esperaba a Juan el Bautista.' },
     { r: 'Vocación', p: 'Llamada de Dios a una persona para seguir un camino de vida, como el sacerdocio o el matrimonio.' },
     { r: 'Virtudes teologales', p: 'Fe, esperanza y caridad, que tienen a Dios como origen y fin.' },
-    { r: 'Vulgata', p: 'Traducción de la Biblia al latín realizada por san Jerónimo.' },
     { r: 'Verbo', p: 'Nombre que da el evangelio de Juan a Jesús como Palabra eterna de Dios hecha carne.' },
-    { r: 'Vasti', p: 'Reina sustituida por Ester tras desobedecer al rey Asuero.' },
     { r: 'Viático', p: 'Nombre que recibe la Eucaristía cuando se da a un enfermo en peligro de muerte.' },
     { r: 'Vinagre', p: 'Bebida amarga que, mezclada con hiel, ofrecieron a Jesús en la cruz.' },
     { r: 'Velo del templo', p: 'Lo que se rasgó en dos en el momento de la muerte de Jesús.' },
@@ -1808,16 +2217,22 @@ const DATA = {
     { r: 'Vela', p: 'Símbolo de la fe que se entrega encendida en el Bautismo.' },
     { r: 'Viña', p: 'Imagen bíblica del pueblo de Israel, usada por Jesús en varias parábolas.' },
     { r: 'Viuda', p: 'Mujer que, según el evangelio, dio dos monedas pequeñas, todo lo que tenía, en el templo.' },
+    { r: 'Vicario de Cristo', p: 'Título que se da al Papa como representante de Jesucristo en la tierra.' },
+    { r: 'Vulgata', p: 'Traducción de la Biblia al latín realizada por san Jerónimo, usada durante siglos por la Iglesia.' },
+    { r: 'Vicente de Paúl', p: 'Santo francés conocido por fundar obras de caridad para ayudar a los pobres.' },
+    { r: 'Virtudes cardinales', p: 'Prudencia, justicia, fortaleza y templanza: los cuatro hábitos morales básicos que se alcanzan con el esfuerzo humano.' },
+    { r: 'Valle de Josafat', p: 'Lugar cerca de Jerusalén al que la tradición asocia el juicio final.' },
   ],
   W: [
-    { r: "Wojtyla", p: "Apellido de nacimiento de San Juan Pablo II, el Papa polaco que gobernó la Iglesia 27 años." },
-    { r: "Wenceslao", p: "Duque y mártir del siglo X, patrón de la actual República Checa." },
-    { r: "Wittenberg", p: "Ciudad alemana donde Lutero clavó sus tesis en la puerta de la iglesia del castillo." },
-    { r: "Worms", p: "Ciudad alemana donde un emperador convocó una dieta para juzgar a Lutero en 1521." },
-    { r: "Westminster", p: "Abadía londinense donde se coronan los reyes británicos, lugar simbólico en la historia del anglicanismo." },
-    { r: "Yahweh", p: "Nombre divino revelado a Moisés, tan sagrado que los judíos evitan pronunciarlo.", contiene: true }
+    { r: "Yahweh", p: "Nombre divino revelado a Moisés, tan sagrado que los judíos evitan pronunciarlo.", contiene: true },
+    { r: "Wojtyla", p: "Apellido de nacimiento de San Juan Pablo II, el Papa polaco que creó las Jornadas Mundiales de la Juventud." },
+    { r: "Wittenberg", p: "Ciudad alemana donde Lutero clavó sus 95 tesis en la puerta de una iglesia, dando inicio a la Reforma protestante." },
+    { r: "Westminster", p: "Famosa abadía de Londres donde se coronan los reyes de Inglaterra y están enterrados muchos de ellos." },
+    { r: "Worms", p: "Ciudad alemana donde, en 1521, Lutero se negó a retractarse de sus ideas ante el emperador Carlos V." },
+    { r: "Wenceslao", p: "Príncipe santo de Bohemia (actual República Checa), protagonista de un famoso villancico de Navidad." },
+    { r: "Wesley", p: "Clérigo inglés del siglo XVIII que fundó el movimiento metodista dentro de la tradición anglicana." },
+    { r: "Zwinglio", p: "Reformador protestante de Zúrich, contemporáneo de Lutero, que entendía la Eucaristía solo como un signo.", contiene: true }
   ],
-
   X: [
     { r: "Éxodo", p: "Segundo libro del Pentateuco que narra la liberación de los israelitas de la esclavitud en Egipto.", contiene: true },
     { r: "Examen de conciencia", p: "Práctica de revisar los propios actos a la luz de los mandamientos antes del sacramento de la reconciliación.", contiene: true },
@@ -1828,24 +2243,23 @@ const DATA = {
     { r: "Sexto mandamiento", p: "Precepto del Decálogo referido a la castidad y la fidelidad conyugal.", contiene: true },
     { r: "Expulsión del paraíso", p: "Consecuencia del pecado original narrada en el Génesis tras desobedecer Adán y Eva.", contiene: true },
     { r: "Exorcismo", p: "Rito mediante el cual la Iglesia pide la liberación de una persona de la influencia del demonio.", contiene: true },
-    { r: "Excomunión", p: "Pena canónica máxima que separa a un bautizado de la plena participación en la vida de la Iglesia.", contiene: true },
     { r: "Exequias", p: "Celebración litúrgica que la Iglesia ofrece por un difunto antes de su sepultura.", contiene: true },
-    { r: "Extremaunción", p: "Denominación clásica, hoy en desuso, del sacramento que se administra a los enfermos graves o moribundos.", contiene: true },
-    { r: "Exaltación de la Cruz", p: "Fiesta litúrgica del 14 de septiembre que celebra el triunfo del madero de la Redención.", contiene: true },
-    { r: "Ortodoxo", p: "Calificativo de las Iglesias orientales separadas de Roma tras el Cisma de 1054.", contiene: true },
     { r: "Éxtasis", p: "Estado de unión profunda con Dios vivido por místicos como Santa Teresa de Jesús.", contiene: true },
     { r: "Expiación", p: "Reparación del pecado mediante el sacrificio, cumplida plenamente en la cruz de Cristo.", contiene: true },
-    { r: "Exhortación apostólica", p: "Documento pontificio de menor rango que una encíclica, usado por ejemplo en 'Evangelii gaudium'.", contiene: true },
     { r: "Félix", p: "Nombre de varios santos y papas de los primeros siglos; significa 'feliz' en latín.", contiene: true },
     { r: "Pax Christi", p: "Movimiento católico internacional por la paz fundado tras la Segunda Guerra Mundial.", contiene: true },
     { r: "Reflexión", p: "Momento de meditación personal sobre la Palabra de Dios.", contiene: true },
-    { r: "Doxología", p: "Fórmula de alabanza a la Trinidad que cierra muchas oraciones litúrgicas, como el 'Gloria al Padre'.", contiene: true }
+    { r: "Exilio babilónico", p: "Época en que el pueblo de Judá fue llevado a Babilonia, tras la destrucción de Jerusalén por Nabucodonosor.", contiene: true },
+    { r: "Excomunión", p: "Pena de la Iglesia Católica que excluye a una persona de los sacramentos y de la vida de la comunidad.", contiene: true },
+    { r: "Extremaunción", p: "Nombre tradicional del sacramento que se da a los enfermos graves, hoy llamado Unción de los enfermos.", contiene: true },
+    { r: "Maximiliano Kolbe", p: "Fraile franciscano polaco que se ofreció a morir en lugar de otro prisionero en el campo de Auschwitz.", contiene: true },
+    { r: "Ortodoxia", p: "Nombre de las Iglesias cristianas de Oriente que se separaron de Roma en el Cisma de 1054.", contiene: true },
+    { r: "Exaltación de la Cruz", p: "Fiesta litúrgica del 14 de septiembre que recuerda el hallazgo y la veneración de la cruz de Jesús.", contiene: true },
+    { r: "Ex cathedra", p: "Expresión latina que se usa cuando el Papa habla con autoridad infalible sobre fe o moral.", contiene: true }
   ],
-
   Y: [
     { r: "Yahvé", p: "Nombre propio de Dios revelado a Moisés, tan sagrado que los judíos no lo pronuncian." },
     { r: "Yugo", p: "Imagen usada por Jesús para describir su enseñanza, que llamó ligera y llevadera." },
-    { r: "Yom Kipur", p: "Fiesta judía del Día del Perdón, la más solemne del calendario hebreo." },
     { r: "Yo soy el que soy", p: "Traducción tradicional de la respuesta divina a Moisés sobre su propio nombre." },
     { r: "Yeshúa", p: "Nombre hebreo original de Jesús, que significa 'Dios salva'." },
     { r: "Ayuno", p: "Práctica penitencial de abstenerse de alimento, obligatoria en la Iglesia el Miércoles de Ceniza y el Viernes Santo.", contiene: true },
@@ -1859,19 +2273,15 @@ const DATA = {
     { r: "Ayuda al prójimo", p: "Virtud practicada por el buen samaritano al socorrer al hombre herido.", contiene: true },
     { r: "Hoy", p: "Adverbio de tiempo que se refiere al día presente, usado por Jesús en su promesa al buen ladrón.", contiene: true },
     { r: "Yo pecador", p: "Fórmula penitencial con la que inicia el acto de contrición al comienzo de la misa." },
-    { r: "Ley natural", p: "Orden moral que, según la doctrina católica, todo ser humano puede conocer por la razón sin necesidad de revelación.", contiene: true }
+    { r: "Ley del talión", p: "Principio de justicia del Antiguo Testamento resumido en la frase \"ojo por ojo, diente por diente\".", contiene: true },
+    { r: "Yom Kipur", p: "Fiesta judía del perdón, también llamada Día de la Expiación." }
   ],
-
   Z: [
     { r: "Zelote", p: "Miembro de un grupo judío del siglo I partidario de la resistencia armada contra Roma; uno de los Doce, Simón, llevaba este sobrenombre." },
-    { r: "Zabulón", p: "Uno de los doce hijos de Jacob, que dio nombre a una de las tribus de Israel." },
     { r: "Zacarías", p: "Sacerdote del Templo, padre de Juan el Bautista, que compuso el cántico del Benedictus." },
     { r: "Zaqueo", p: "Jefe de los publicanos de Jericó que subió a un sicómoro para ver a Jesús." },
     { r: "Zarza ardiente", p: "Lugar donde Dios se reveló a Moisés con el nombre de Yahvé." },
     { r: "Zebedeo", p: "Pescador galileo, padre de Santiago el Mayor y Juan evangelista." },
-    { r: "Zorobabel", p: "Gobernador judío que dirigió la reconstrucción del Templo tras el regreso del exilio babilónico." },
-    { r: "Zigurat", p: "Construcción en forma de torre escalonada propia de Mesopotamia, asociada por algunos a la torre de Babel." },
-    { r: "Zuinglio", p: "Reformador suizo de Zúrich que defendió una interpretación simbólica de la presencia eucarística." },
     { r: "Zorro", p: "Animal astuto con el que Jesús se comparó al decir que no tenía dónde reposar la cabeza." },
     { r: "Cizaña", p: "Mala hierba de una parábola que crece junto al trigo bueno hasta la siega final.", contiene: true },
     { r: "Diezmo", p: "Décima parte de los bienes que se entregaba tradicionalmente para el culto y el sostenimiento del templo.", contiene: true },
@@ -1884,7 +2294,6 @@ const DATA = {
     { r: "Cáliz", p: "Vaso sagrado que contiene el vino consagrado durante la celebración eucarística.", contiene: true },
     { r: "Corazón de Jesús", p: "Devoción católica centrada en el amor de Cristo, impulsada por las revelaciones a santa Margarita María de Alacoque.", contiene: true },
     { r: "Ezequiel", p: "Profeta del exilio babilónico, autor de la visión de los huesos secos que vuelven a la vida.", contiene: true },
-    { r: "Ezequías", p: "Rey de Judá conocido por su reforma religiosa y por ampliar el abastecimiento de agua de Jerusalén.", contiene: true },
     { r: "Cruzadas", p: "Expediciones militares medievales promovidas para recuperar los Santos Lugares.", contiene: true },
     { r: "Mostaza", p: "Semilla pequeñísima con la que Jesús comparó el crecimiento del Reino de los Cielos.", contiene: true },
     { r: "Bienaventuranzas", p: "Conjunto de ocho proclamaciones de dicha con que se abre el Sermón del Monte.", contiene: true },
@@ -1893,344 +2302,7 @@ const DATA = {
     { r: "Luz del mundo", p: "Expresión con la que Jesús se designa a sí mismo en el Evangelio de Juan.", contiene: true },
     { r: "Paz", p: "Don que Cristo resucitado trae a sus discípulos tras aparecerse en el cenáculo.", contiene: true },
     { r: "Cruz", p: "Instrumento de tortura romano convertido por la fe cristiana en signo de salvación.", contiene: true }
-  ]
-  },
-  bachillerato: {
-  A: [
-    { r: "Arca de la Alianza", p: "Caja sagrada que guardaba las tablas con los Diez Mandamientos." },
-    { r: "Apócrifo", p: "Se dice de un texto religioso que la Iglesia no reconoce como parte de la Biblia." },
-    { r: "Ateísmo", p: "Postura de quien no cree que exista Dios." },
-    { r: "Agnosticismo", p: "Postura de quien dice que no se puede saber si Dios existe o no." },
-    { r: "Aureola", p: "Círculo de luz que se pinta sobre la cabeza de los santos en los cuadros." },
-    { r: "Absolución", p: "Perdón de los pecados que da el sacerdote en la confesión." },
-    { r: "Anatema", p: "Condena muy fuerte que la Iglesia usaba contra quien se apartaba gravemente de la fe." },
-    { r: "Apostasía", p: "Abandono total y público de la fe que antes se tenía." },
-    // Bachillerato - no incluidas: Abdías, Agnus Dei, Arrianismo, Atanasio, Advocación, Ageo, Ambón, Amalecitas, Anacoreta, Anglicanismo, Apologética, Asceta, Asmodeo, Arquidiócesis, Aspersorio, Abjuración, Ananías, Antífona, Anabaptista, Antropomorfismo, Ambrosio, Artajerjes
   ],
-  B: [
-    { r: "Bula", p: "Documento oficial y solemne firmado por el Papa." },
-    { r: "Blasfemia", p: "Palabra o frase que falta gravemente al respeto debido a Dios." },
-    { r: "Belcebú", p: "Nombre que se usa en la Biblia para referirse al demonio." },
-    { r: "Báculo", p: "Bastón que usan el Papa y los obispos como signo de su autoridad." },
-    { r: "Beatificación", p: "Paso previo a la canonización, con el que la Iglesia declara 'bendito' a alguien." },
-    { r: "Bienaventuranzas", p: "Las frases de Jesús en el Sermón de la Montaña que empiezan con 'Dichosos los...'." },
-    { r: "Baal", p: "Dios pagano al que adoraban algunos pueblos vecinos de Israel." },
-    { r: "Bartimeo", p: "Ciego de Jericó al que Jesús devolvió la vista." },
-    // Bachillerato - no incluidas: Baruc, Bizantino, Balaam, Bernardo de Claraval, Buenaventura, Bautismo de sangre, Boanerges, Belsasar, Bautisterio, Benedictino, Breviario, Bilocación, Barac, Behemot, Belial, Bonifacio, Bienaventuranza eterna, Basilio, Beda, Betel, Berseba, Berea
-  ],
-  C: [
-    { r: "Canon", p: "Lista oficial de libros que la Iglesia reconoce como parte de la Biblia." },
-    // REVISAR: la idea de que los primeros cristianos se escondían y celebraban el culto habitualmente en las catacumbas durante las persecuciones es una simplificación tradicional que algunos historiadores matizan (eran sobre todo cementerios)
-    { r: "Catacumbas", p: "Galerías bajo tierra en Roma donde los primeros cristianos enterraban a sus muertos." },
-    { r: "Constantino", p: "Emperador romano que terminó con la persecución a los cristianos." },
-    { r: "Clero", p: "Conjunto de personas consagradas al servicio de la Iglesia, como sacerdotes y obispos." },
-    { r: "Cisma", p: "Gran división o ruptura dentro de la Iglesia." },
-    { r: "Canonización", p: "Acto por el que el Papa declara santo a alguien." },
-    { r: "Cónclave", p: "Reunión de cardenales para elegir a un nuevo Papa." },
-    { r: "Caifás", p: "Sumo sacerdote judío que participó en la condena de Jesús." },
-    // Bachillerato - no incluidas: Concupiscencia, Consubstancial, Cristología, Calcedonia, Curia, Casulla, Catarismo, Contrición, Crisma, Cuáquero, Cartujo, Cisterciense, Ciborio, Concordato, Colegiata, Calvinismo, Cirilo, Cábala, Cenobita, Cosmogonía, Cefas
-  ],
-  D: [
-    { r: "Decálogo", p: "Otro nombre para los Diez Mandamientos." },
-    { r: "Diáspora", p: "Dispersión de un pueblo fuera de su tierra, como la del pueblo judío." },
-    { r: "Dogma", p: "Verdad de fe que la Iglesia enseña como cierta y no se puede discutir." },
-    { r: "Diócesis", p: "Territorio que gobierna un obispo." },
-    { r: "Damasco", p: "Ciudad hacia la que iba Saulo cuando se convirtió en San Pablo." },
-    { r: "Diezmo", p: "Parte de lo que se ganaba, normalmente la décima parte, que se entregaba para el culto o los pobres." },
-    { r: "Doctor de la Iglesia", p: "Título que da el Papa a santos muy sabios, como Santa Teresa de Jesús o Santo Tomás de Aquino." },
-    // REVISAR: la tradición que vincula a santo Domingo de Guzmán con el origen del rosario mediante una aparición mariana es una piadosa tradición cuya historicidad discuten algunos estudiosos
-    { r: "Domingo de Guzmán", p: "Fundador de la Orden de los Dominicos, relacionado por la tradición con el origen del rosario." },
-    // Bachillerato - no incluidas: Doxología, Deuterocanónico, Docetismo, Didaché, Donatismo, Dormición, Dalmática, Dagón, Darío, Dídimo, Dicasterio, Dionisio, Diaconisa, Dogmática, Deísmo, Demiurgo, Dualismo, Dulía, Duns Escoto, Dispensa, Deuteronomio, Débora
-  ],
-  E: [
-    { r: "Ecumenismo", p: "Movimiento que busca la unidad entre las distintas Iglesias cristianas." },
-    { r: "Encíclica", p: "Carta solemne que el Papa escribe a toda la Iglesia sobre un tema importante." },
-    { r: "Excomunión", p: "Pena por la que una persona queda fuera de la comunión con la Iglesia." },
-    { r: "Exorcismo", p: "Rito por el que la Iglesia pide la expulsión de un espíritu maligno." },
-    { r: "Éxodo", p: "Libro de la Biblia que cuenta la salida del pueblo de Israel de Egipto." },
-    { r: "Ezequiel", p: "Profeta del Antiguo Testamento, famoso por su visión de los huesos que vuelven a la vida." },
-    { r: "Edicto de Milán", p: "Decreto del año 313 que dio libertad religiosa a los cristianos en el Imperio Romano." },
-    { r: "Escritura", p: "Otro nombre para la Biblia, también llamada 'Sagrada ___'." },
-    // Bachillerato - no incluidas: Exégesis, Escatología, Eclesiología, Epíclesis, Ex cathedra, Escolástica, Eutiquianismo, Episcopado, Eremita, Esenios, Eusebio, Estola, Expiación, Exultet, Evangeliario, Erasmo, Elohim, Efrén, Ezequías, Esdras, Eclesiástico, Exarca
-  ],
-  F: [
-    { r: "Fiat", p: "Palabra latina que significa 'hágase'. Es la respuesta de María al ángel en la Anunciación." },
-    { r: "Francisco Javier", p: "Santo jesuita español, muy famoso como misionero en Asia." },
-    { r: "Franciscano", p: "Religioso que sigue la orden fundada por San Francisco de Asís." },
-    { r: "Filisteos", p: "Pueblo enemigo de los israelitas. Goliat era uno de ellos." },
-    { r: "Flagelación", p: "Momento de la Pasión en que azotaron a Jesús antes de crucificarlo." },
-    { r: "Fenicios", p: "Antiguo pueblo del Mediterráneo, vecino de Israel, famoso por el comercio y la navegación." },
-    { r: "Concilio de Florencia", p: "Concilio del siglo XV que buscó la unión con las Iglesias de Oriente y definió que son siete los sacramentos.", contiene: true },
-    // REVISAR: Filipos estaba en la región de Macedonia; decir "Grecia" es una simplificación geográfica para hacerlo más reconocible.
-    { r: "Filipenses", p: "Libro de la Biblia. Es una carta que san Pablo escribió a una comunidad cristiana de Grecia." },
-  ],
-  // Bachillerato - no incluidas: Filioque, Fideísmo, Flavio Josefo, Fides et ratio, Filón de Alejandría, Fariseísmo, Flagelantes, Fundamentalismo, Fanuel, Filacteria, Faldistorio, Febe, Festo, Félix, Frumencio, Fray Luis de León, Filemón, Fervor, Fermento, Feligrés, Fanatismo, Fiesta de los Tabernáculos
-  G: [
-    { r: "Gólgota", p: "Monte, también llamado Calvario, donde murió Jesús en la cruz." },
-    { r: "Getsemaní", p: "Huerto donde Jesús oró la noche antes de que lo detuvieran." },
-    { r: "Guadalupe", p: "Virgen que se apareció en México a San Juan Diego." },
-    { r: "Gomorra", p: "Ciudad castigada por Dios junto a Sodoma, por su maldad." },
-    { r: "Gedeón", p: "Juez de Israel que venció a un gran ejército con muy pocos soldados." },
-    { r: "Guardia suiza", p: "Cuerpo de soldados, vestidos con un traje muy llamativo, que protege al Papa en el Vaticano." },
-    { r: "Gregoriano", p: "Tipo de canto religioso, en latín, típico de la Edad Media, que lleva el nombre de un Papa." },
-    { r: "Gregorio Magno", p: "Papa de finales del siglo VI. Le dio nombre a un famoso tipo de canto litúrgico." },
-    { r: "Gracia santificante", p: "Don de Dios que vive en el alma de la persona buena y la hace partícipe de la vida de Dios." },
-  ],
-  // Bachillerato - no incluidas: Gnosticismo, Galicanismo, Gehena, Gog y Magog, Gaudium et spes, Glosolalia, Gradual, Gamaliel, Genuflexión, Gomer, Gótico, Gentiles, Gerasa, Gosén, Gabaón, Gilgal, Gat, Gaza, Gregorio de Nisa, Gálatas, Gnosis
-  H: [
-    { r: "Hijo del Hombre", p: "Título que Jesús usaba muchas veces para hablar de sí mismo, y que ya aparecía en los libros de los profetas del Antiguo Testamento." },
-    { r: "Herejía", p: "Palabra que se usa para una idea religiosa que la Iglesia considera falsa y contraria a la fe." },
-    { r: "Hisopo", p: "Objeto que el sacerdote usa para echar agua bendita sobre la gente." },
-    { r: "Hugonotes", p: "Nombre de los protestantes franceses en los siglos XVI y XVII." },
-    { r: "Hanukkah", p: "Fiesta judía de las luces, en la que se encienden velas durante ocho días." },
-    // REVISAR: este término bíblico (sacrificio quemado) coincide con el nombre que hoy se usa para el genocidio judío del siglo XX; conviene aclararlo en clase para evitar confusión.
-    { r: "Holocausto", p: "En la Biblia, sacrificio en el que se quemaba por completo un animal ofrecido a Dios." },
-    { r: "Homilía", p: "Explicación que el sacerdote hace del Evangelio durante la misa." },
-    // REVISAR: la Biblia usa a veces Horeb y Sinaí como el mismo monte y a veces como montes cercanos distintos; se simplifica como sinónimos por claridad.
-    { r: "Horeb", p: "Otro nombre del monte Sinaí, donde Dios le dio los Diez Mandamientos a Moisés." },
-    { r: "Hipona", p: "Ciudad del norte de África donde san Agustín fue obispo." },
-    { r: "Humanae vitae", p: "Documento del papa Pablo VI, del año 1968, sobre el matrimonio y la familia, que causó mucho debate." },
-  ],
-  // Bachillerato - no incluidas: Homousios, Hiperdulía, Hasmoneos, Hexamerón, Hus, Hagiografía, Hesicasmo, Hipóstasis, Hipólito, Hilario, Habacuc, Hermón, Herodianos, Hebrón, Hulda, Hamán, Herodías, Hildegarda, Hiram, Hermenéutica
-  I: [
-    { r: "Infalibilidad", p: "Dogma que dice que el Papa no se equivoca cuando define solemnemente una verdad de fe." },
-    { r: "Indulgencia", p: "Perdón especial que la Iglesia concede para quitar la pena del pecado. Su venta abusiva fue una de las causas de la Reforma protestante." },
-    { r: "Isidoro de Sevilla", p: "Santo español, obispo y Doctor de la Iglesia, famoso por escribir una gran enciclopedia medieval. Hoy se le considera patrón de Internet." },
-    { r: "Iscariote", p: "Apellido de Judas, el apóstol que traicionó a Jesús." },
-    { r: "Inspiración", p: "Acción de Dios que guio a los autores de la Biblia para escribir su Palabra." },
-    { r: "Inquisición", p: "Tribunal de la Iglesia, muy conocido en la historia de España, que juzgaba los delitos contra la fe." },
-    { r: "Inmaculada Concepción", p: "Dogma que dice que María fue concebida sin pecado original. Se celebra el 8 de diciembre." },
-    { r: "Idolatría", p: "Adorar a un ídolo o a una cosa en lugar de a Dios." },
-  ],
-  // Bachillerato - no incluidas: Iconoclasia, Inerrancia, Inculturación, Investidura, Ignacio de Antioquía, Introito, Imprimatur, Impanación, Iconostasio, Inmanencia, Interdicto, Ireneo de Lyon, Inmolación, Inhabitación trinitaria, Isacar, Idumea, Icabod, Iturea, Incardinación, Inefable, Intercesión, Ismaelitas
-  J: [
-    { r: "Jahvé", p: "Nombre propio de Dios revelado a Moisés en la zarza ardiente. Los judíos evitaban pronunciarlo por respeto." },
-    { r: "Jesuitas", p: "Orden religiosa fundada por san Ignacio de Loyola, también llamada Compañía de Jesús. El papa Francisco pertenece a ella." },
-    { r: "Jerarquía", p: "Orden de autoridad en la Iglesia: el Papa, los obispos y los sacerdotes." },
-    { r: "Jerónimo", p: "Santo que tradujo la Biblia al latín. Se le considera patrón de los traductores." },
-    { r: "Jubileo", p: "Año santo en el que la Iglesia concede un perdón especial muy grande." },
-    { r: "Juan de la Cruz", p: "Santo español, poeta y místico, que escribió sobre la 'noche oscura' del alma." },
-    { r: "Jonatán", p: "Hijo del rey Saúl y gran amigo de David." },
-    { r: "Jueces", p: "Libro de la Biblia que cuenta la historia de personas como Gedeón o Sansón, que gobernaron a Israel antes de los reyes." },
-    { r: "Jairo", p: "Padre cuya hija fue resucitada por Jesús." },
-  ],
-  // Bachillerato - no incluidas: Jansenismo, Jahvista, Judaizantes, Justino, Juan Crisóstomo, Jebuseos, Jeroboam, Jezabel, Jesé, Joás, Josías, Jezreel, Josafat, Jaculatoria, Joel, Jetró, Judit, Jafet, Joab, Jefté, Jope
-  K: [
-    { r: "Kolbe", p: "Sacerdote polaco que se ofreció a morir en el campo de concentración de Auschwitz, en el lugar de otro preso." },
-    { r: "Kyrie eleison", p: "Expresión griega que se dice en la Misa y significa 'Señor, ten piedad'." },
-    { r: "Yom Kipur", p: "Fiesta judía del perdón, el día más sagrado del año para los judíos." },
-    { r: "Hanukkah", p: "Fiesta judía de las luces, que dura ocho días." },
-    { r: "Kyrios", p: "Palabra griega que significa 'Señor', usada para llamar a Jesús resucitado." },
-    // REVISAR: la autoría de "La imitación de Cristo" se atribuye tradicionalmente a Tomás de Kempis, aunque algunos estudiosos la discuten.
-    { r: "Kempis", p: "Autor medieval al que se atribuye un libro espiritual muy conocido, 'La imitación de Cristo'." },
-    { r: "Koiné", p: "Nombre del griego común en el que se escribió el Nuevo Testamento." },
-    { r: "Kaaba", p: "Edificio sagrado de La Meca hacia el que rezan los musulmanes." },
-  ],
-  // Bachillerato - no incluidas: Kénosis, Kierkegaard, Kedrón, Kiko Argüello, Kidush, Keturá, Koinonía
-
-  L: [
-    { r: "Lutero", p: "Monje agustino alemán que inició la Reforma protestante en el siglo XVI." },
-    { r: "Letanía", p: "Lista de invocaciones cortas que se repiten en una oración, como las dedicadas a la Virgen." },
-    { r: "Levítico", p: "Libro del Antiguo Testamento, uno de los cinco primeros, con muchas normas sobre el culto y la pureza." },
-    // REVISAR: el limbo nunca fue un dogma definido y hoy la Iglesia no lo enseña como doctrina oficial; aquí se describe la versión popular más conocida.
-    { r: "Limbo", p: "Según una idea antigua y hoy abandonada, lugar donde iban las almas de los niños que morían sin ser bautizados." },
-    { r: "Laico", p: "Cristiano que no es sacerdote ni religioso, pero vive su fe en medio del mundo." },
-    { r: "Leví", p: "Uno de los doce hijos de Jacob. De él desciende la tribu sacerdotal de Israel." },
-    { r: "Lamentaciones", p: "Libro de la Biblia que expresa el dolor por la destrucción de Jerusalén." },
-    { r: "Loyola", p: "Apellido de san Ignacio, el fundador de los jesuitas." },
-    { r: "Logos", p: "Palabra griega que usa san Juan para llamar a Jesús 'la Palabra' de Dios." },
-  ],
-  // Bachillerato - no incluidas: Liturgia de las Horas, Latría, Letrán, Lumen gentium, Lectio divina, Levirato, Teología de la liberación, Laicismo, Lefebvrianos, Leccionario, Leviatán, León Magno, Laudes, Lavabo, Laodicea, Lamec, Labán, Lidia, Lino, Lactancio, Lisias
-
-  M: [
-    { r: "Macabeos", p: "Familia judía que luchó por defender su fe y su templo frente a los griegos. De esta gesta viene la fiesta judía de Hanukkah." },
-    { r: "Magníficat", p: "Cántico de alabanza que María dice a Dios cuando visita a su prima Isabel." },
-    // REVISAR: las lecturas bíblicas de la Misa están propiamente en el Leccionario, aunque a veces se encuadernan junto con el Misal.
-    { r: "Misal", p: "Libro que usa el sacerdote en la Misa, con las oraciones y las lecturas." },
-    { r: "Mitra", p: "Gorro alto y puntiagudo que llevan los obispos en las celebraciones solemnes." },
-    { r: "Menorá", p: "Candelabro de siete brazos, símbolo muy conocido del pueblo judío." },
-    { r: "Malaquías", p: "Último libro del Antiguo Testamento, escrito por un profeta." },
-    { r: "Mística", p: "Experiencia profunda de unión con Dios que viven algunos santos, como santa Teresa de Jesús." },
-    // REVISAR: la Biblia no precisa el grado exacto de parentesco entre ambos; algunas traducciones dicen "tío", otras "primo".
-    { r: "Mardoqueo", p: "Pariente de Ester que la ayudó a salvar al pueblo judío en Persia." },
-  ],
-  // Bachillerato - no incluidas: Magisterio, Maniqueísmo, Monofisismo, Mozárabe, Midrash, Masoretas, Maranata, Melquisedec, Metanoia, Mendicantes, Mariología, Marcionismo, Monotelismo, Montanismo, Mesianismo, Mishná, Mezuzá, Moloc, Martirologio, Moab, Mical, Miqueas
-
-  N: [
-    { r: "Nabucodonosor", p: "Rey de Babilonia que conquistó Jerusalén y llevó a los judíos al exilio." },
-    { r: "Nínive", p: "Ciudad a la que Dios envió al profeta Jonás para avisar de que debían cambiar de vida." },
-    { r: "Nicodemo", p: "Fariseo que visitó a Jesús de noche para hacerle preguntas sobre la fe." },
-    { r: "Novena", p: "Conjunto de oraciones que se repiten durante nueve días seguidos." },
-    { r: "Números", p: "Libro del Antiguo Testamento que cuenta el paso del pueblo de Israel por el desierto." },
-    // REVISAR: el Credo que se reza en la Misa viene de los concilios de Nicea (325) y Constantinopla (381) combinados; aquí se simplifica a uno solo.
-    { r: "Nicea", p: "Ciudad donde se celebró un concilio muy importante en el siglo IV, origen del Credo que se reza en la Misa." },
-    { r: "Nuncio", p: "Representante del Papa en un país, como un embajador del Vaticano." },
-    { r: "Nimbo", p: "Círculo de luz que se pinta alrededor de la cabeza de Jesús, María o los santos en el arte." },
-    { r: "Naamán", p: "General sirio curado de la lepra por el profeta Eliseo, al bañarse en el río Jordán." },
-  ],
-  // Bachillerato - no incluidas: Nestorianismo, Neoplatonismo, Niceno-constantinopolitano, Novaciano, Nihil obstat, Nueva evangelización, Nártex, Novísimos, Nostra aetate, Necromancia, Nazireato, Nefilim, Nimrod, Nabot, Natán, Nahúm, Neftalí, Nehemías, Noviciado, Numinoso, Neocatecumenal
-
-  "Ñ": [
-    { r: "Sermón de la Montaña", p: "Discurso de Jesús en el que dio las Bienaventuranzas, como 'bienaventurados los pobres'.", contiene: true },
-    { r: "Compañía de Jesús", p: "Nombre oficial de la orden religiosa de los jesuitas, fundada por san Ignacio de Loyola.", contiene: true },
-    { r: "Señal de la cruz", p: "Gesto que hacemos tocando la frente, el pecho y los hombros al rezar.", contiene: true },
-    { r: "Rebaño", p: "Grupo de ovejas guiadas por un pastor; imagen que Jesús usó para hablar de sus seguidores.", contiene: true },
-    { r: "Ermitaño", p: "Persona que vive sola, alejada de la gente, para dedicarse a la oración.", contiene: true },
-    { r: "Pañales", p: "Tela con la que se envuelve a un bebé recién nacido, como hizo María con Jesús.", contiene: true },
-    { r: "Engaño", p: "Mentira o trampa que la serpiente usó para convencer a Eva en el Paraíso.", contiene: true },
-    { r: "Cizaña", p: "Mala hierba de una parábola de Jesús que crece junto al buen trigo, imagen del bien y el mal.", contiene: true },
-    { r: "Sueños del faraón", p: "Visiones del rey de Egipto sobre vacas y espigas, que José supo explicar.", contiene: true },
-  ],
-  // Bachillerato - no incluidas: Peñafort, Viñadores homicidas, Enseñanza social, Señorío, Leño de la cruz, Sueño de Nabucodonosor, Hazañas de los Macabeos, Año de gracia, Ceñidor, Año litúrgico, Año jubilar, Paño de la Verónica, Fiesta de las Cabañas, Señor, Soñador, Viña del Señor, Sueño de Jacob, Enseñar al que no sabe, Señor de los Milagros, Viñadores
-  O: [
-    { r: "Opus Dei", p: "Institución católica fundada en España por san Josemaría Escrivá en 1928. Enseña que el trabajo de cada día puede ayudar a hacerse santo." },
-    { r: "Omega", p: "Última letra del alfabeto griego. Junto con 'Alfa', es un título de Cristo que significa que Él es el principio y el fin de todo." },
-    { r: "Omnipotencia", p: "Atributo de Dios que significa que Él lo puede todo." },
-    { r: "Ofertorio", p: "Momento de la Misa en el que se presentan a Dios el pan y el vino, antes de la consagración." },
-    { r: "Oratorio", p: "Palabra que puede ser una capilla pequeña para rezar, o una obra musical religiosa, como 'El Mesías' de Händel." },
-    { r: "Ortodoxia", p: "Palabra que significa 'enseñanza correcta', conforme a la fe de la Iglesia. Lo contrario es la herejía." },
-    { r: "Ostensorio", p: "Objeto de oro o plata, con forma de sol, que se usa para mostrar la Eucaristía a los fieles, por ejemplo en la procesión del Corpus." },
-    { r: "Omnisciencia", p: "Atributo de Dios que significa que Él lo sabe todo." },
-  ],
-  // Bachillerato - no incluidas: Ontología, Orígenes, Orden mendicante, Óleo de los catecúmenos, Ortopraxis, Oblato, Oficio divino, Ordinario, Oseas, Ozías, Ocozías, Ofir, Onésimo, Oráculo, Omri, Og, Oreb, Oxirrinco, Octava, Oblación, Ordenación, Óbolo
-
-  P: [
-    { r: "Profesión de fe", p: "Fórmula, como el Credo, que decimos en la Misa para afirmar en voz alta lo que creemos." },
-    { r: "Pentateuco", p: "Nombre que reciben los primeros cinco libros de la Biblia, atribuidos por la tradición a Moisés." },
-    { r: "Protestantismo", p: "Movimiento religioso que surgió de la Reforma de Lutero en el siglo XVI y se separó de la Iglesia Católica." },
-    { r: "Primado", p: "Título de honor del arzobispo de mayor rango de un país. En España lo lleva el arzobispo de Toledo." },
-    { r: "Palio", p: "Puede ser la tela que cubre a una Virgen o a un Cristo en una procesión de Semana Santa, o una prenda que el Papa entrega a los arzobispos." },
-    { r: "Papiro", p: "Material antiguo hecho con una planta de Egipto, usado para escribir antes de existir el papel. Algunos manuscritos bíblicos antiguos se conservan en este material." },
-    { r: "Pontificado", p: "Periodo de tiempo durante el que una misma persona ocupa la sede de Roma como cabeza de la Iglesia; por ejemplo, el de Juan Pablo II duró casi 27 años." },
-    { r: "Paráclito", p: "Palabra griega que significa 'defensor' o 'consolador'. Es otro nombre que se da al Espíritu Santo." },
-  ],
-  // Bachillerato - no incluidas: Patrística, Pelagianismo, Predestinación, Pneumatología, Parusía, Protoevangelio, Pericoresis, Panteísmo, Perícopa, Pésaj, Pietismo, Policarpo, Prefacio, Presbiterio, Puritanismo, Purim, Patena, Pastoral, Penitenciaría, Potifar, Priscila, Pseudoepigrafía
-
-  Q: [
-    { r: "Zaqueo", contiene: true, p: "Jefe de los recaudadores de impuestos en Jericó. Era bajo de estatura y se subió a un árbol para ver pasar a Jesús." },
-    { r: "Raquel", contiene: true, p: "Esposa preferida del patriarca Jacob y madre de José, al que después sus hermanos vendieron en Egipto." },
-    { r: "Ezequiel", contiene: true, p: "Profeta del Antiguo Testamento, famoso por su visión de un valle de huesos secos que vuelven a la vida." },
-    { r: "Catequesis", contiene: true, p: "Enseñanza de la fe cristiana que se da a niños y adultos para prepararse a recibir los sacramentos." },
-    { r: "Jerarquía", contiene: true, p: "Orden de autoridad dentro de la Iglesia, desde el Papa hasta los obispos y los sacerdotes." },
-    { r: "Monarquía", contiene: true, p: "Forma de gobierno con un rey al frente. Saúl, David y Salomón gobernaron Israel bajo este sistema." },
-    { r: "Antioquía", contiene: true, p: "Ciudad de Siria donde, según el libro de los Hechos, se empezó a llamar 'cristianos' a los seguidores de Jesús." },
-    { r: "Querubín", p: "Tipo de ángel que, según la Biblia, cuidaba el Arca de la Alianza y la entrada al Paraíso." },
-  ],
-  // Bachillerato - no incluidas: Quietismo, Quo vadis, Quiliasmo, Quincuagésima, Quinque viae, Tomás de Aquino, Quas primas, Equiprobabilismo, Qumrán, Quirino, Quedorlaomer, Queila, Quemós, Qohélet, Quicumque, Réquiem, Arquidiócesis, Iniquidad, Ezequías, Joaquín de Fiore, Quanta cura, Quadragesimo anno
-
-  R: [
-    { r: "Reforma", p: "Movimiento cristiano que comenzó en el siglo XVI con Martín Lutero y dio origen a las Iglesias protestantes." },
-    { r: "Reencarnación", p: "Creencia de religiones orientales según la cual el alma pasa a otro cuerpo después de morir. La fe cristiana no la acepta." },
-    { r: "Redención", p: "Obra de Jesús de salvarnos del pecado a través de su muerte y resurrección." },
-    { r: "Rafael", p: "Uno de los tres arcángeles que aparecen en la Biblia, junto a Gabriel y Miguel. Acompaña a Tobías en su viaje en el Libro de Tobías." },
-    { r: "Réquiem", p: "Nombre que se da a la misa por los difuntos, y también a obras musicales famosas compuestas para ella, como la de Mozart." },
-    { r: "Retablo", p: "Conjunto de imágenes y pinturas religiosas colocado detrás del altar de una iglesia." },
-    { r: "Romanos", p: "Carta de san Pablo dirigida a los cristianos de la capital del Imperio, uno de los libros más importantes del Nuevo Testamento." },
-    { r: "Rahab", p: "Mujer de Jericó que ayudó a los espías israelitas y salvó a su familia cuando cayeron las murallas de la ciudad." },
-  ],
-  // Bachillerato - no incluidas: Relativismo, Rerum novarum, Racionalismo, Regla de san Benito, Rito oriental, Rico Epulón, Reliquia, Remanente, Revelación, Rito latino, Roboam, Regina coeli, Rúbricas, Roquete, Rabínico, Raimundo Lulio, Ramá, Rogativa, Reyes, Rubén, Rut, Ritual
-  S: [
-    { r: 'Sodoma', p: 'Ciudad bíblica destruida por su maldad, junto con Gomorra.' },
-    { r: 'Samaria', p: 'Región de Israel, entre Judea y Galilea, cuyos habitantes eran despreciados por los judíos en tiempos de Jesús.' },
-    { r: 'Sion', p: 'Nombre del monte de Jerusalén sobre el que se construyó la ciudad santa, símbolo del pueblo de Dios.' },
-    { r: 'Simeón', p: 'Anciano que, en el templo, reconoció al niño Jesús como el Mesías.' },
-    { r: 'Saulo', p: 'Nombre que tenía san Pablo antes de convertirse al cristianismo.' },
-    { r: 'Sefardíes', p: 'Judíos de origen español, expulsados de España en 1492.' },
-    { r: 'Sabbat', p: 'Nombre judío del día de descanso semanal, el sábado.' },
-    { r: 'Sede vacante', p: 'Periodo sin Papa, entre la muerte o renuncia de uno y la elección del siguiente.' },
-    { r: 'Sanedrín', p: 'Tribunal religioso judío que juzgó a Jesús antes de su crucifixión.' },
-    { r: 'Saduceos', p: 'Grupo religioso judío de la época de Jesús, rival de los fariseos, que no creía en la resurrección.' },
-  ],
-  // Bachillerato - no incluidas: Sabelianismo, Sacrosanctum Concilium, Septuaginta, Sinópticos, Soteriología, Sucesión apostólica, Simonía, Sínodo, Shekiná, Santificación, Sobrepelliz, Sísara, Senaquerib, Salmanasar, Sadoc, Sofonías, Shemá, Sacramentario, Sincretismo, Sudario
-  T: [
-    { r: 'Talmud', p: 'Conjunto de comentarios y enseñanzas judías sobre la Ley, muy importante en el judaísmo.' },
-    { r: 'Torá', p: 'Los cinco primeros libros de la Biblia judía, también llamados Pentateuco.' },
-    { r: 'Transfiguración', p: 'Momento en el que Jesús se mostró lleno de luz ante Pedro, Santiago y Juan en el monte Tabor.' },
-    { r: 'Templarios', p: 'Orden militar y religiosa medieval que protegía a los peregrinos en Tierra Santa.' },
-    { r: 'Tiara', p: 'Antigua corona de tres niveles que usaban los Papas.' },
-    { r: 'Triduo pascual', p: 'Los tres días más importantes del año litúrgico: Jueves, Viernes y Sábado Santo.' },
-    { r: 'Tabernáculo', p: 'Tienda sagrada donde los israelitas guardaban el Arca de la Alianza durante el desierto.' },
-    { r: 'Tesalonicenses', p: 'Carta de san Pablo dirigida a la comunidad cristiana de una ciudad de Grecia.' },
-    { r: 'Transustanciación', p: 'Palabra que explica cómo el pan y el vino se convierten de verdad en el cuerpo y la sangre de Cristo.' },
-  ],
-  // Bachillerato - no incluidas: Teocracia, Teísmo, Taumaturgo, Tetrarca, Tamar, Turíbulo, Tradicionalismo, Tiglat-Piléser, Tiro, Teófilo, Timoteo, Tito, Teodicea, Teofanía, Tetragrámaton, Tomismo, Trento, Tertuliano, Targum, Tanaj, Tonsura
-  U: [
-    { r: 'Urías', p: 'Marido de Betsabé, enviado a morir en la batalla por orden del rey David.' },
-    { r: 'Uriel', p: 'Uno de los arcángeles, junto con Miguel, Gabriel y Rafael.' },
-    { r: 'Urbano II', p: 'Papa que predicó la primera cruzada a finales del siglo XI.' },
-    { r: 'Unción de los enfermos', p: 'Sacramento en el que se usa aceite sagrado para dar fuerza espiritual a quien está grave de salud.' },
-    { r: 'Unigénito', p: 'Palabra del Credo que significa "hijo único", referida a Jesucristo.' },
-    { r: 'Eucaristía', p: 'Sacramento en el que el pan y el vino se convierten en el cuerpo y la sangre de Cristo.', contiene: true },
-    { r: 'Purgatorio', p: 'Estado de purificación de las almas antes de entrar en el cielo.', contiene: true },
-    { r: 'Pentateuco', p: 'Nombre que reciben los cinco primeros libros de la Biblia.', contiene: true },
-    { r: 'Agustín', p: 'Santo y obispo de Hipona, autor de "Las Confesiones", uno de los grandes pensadores cristianos.', contiene: true },
-    { r: 'Urbi et orbi', p: 'Bendición que da el Papa "a la ciudad y al mundo" en fiestas como Navidad o Pascua.' },
-  ],
-  // Bachillerato - no incluidas: Ultramontanismo, Urim y Tumim, Unam Sanctam, Unitatis redintegratio, Unión hipostática, Ubicuidad, Pneumatología, Concupiscencia, Unitarismo, Ugarit, Unigenitus, Uniatas, Uzá, Ur de los caldeos, Uz, Usura, Transustanciación, Unidad de la Iglesia, Justificación, Sucesión apostólica
-  V: [
-    { r: 'Vaticano II', p: 'Concilio del siglo XX que renovó muchos aspectos de la vida y la liturgia de la Iglesia.' },
-    { r: 'Vicario de Cristo', p: 'Título que se da al Papa como representante de Jesucristo en la tierra.' },
-    { r: 'Vulgata', p: 'Traducción de la Biblia al latín realizada por san Jerónimo, usada durante siglos por la Iglesia.' },
-    { r: 'Vicente de Paúl', p: 'Santo francés conocido por fundar obras de caridad para ayudar a los pobres.' },
-    { r: 'Virgen del Carmen', p: 'Advocación de María, patrona de los marineros, que se celebra el 16 de julio.' },
-    { r: 'Virtudes teologales', p: 'Fe, esperanza y caridad: los tres dones que nos unen directamente con Dios.' },
-    { r: 'Virtudes cardinales', p: 'Prudencia, justicia, fortaleza y templanza: los cuatro hábitos morales básicos que se alcanzan con el esfuerzo humano.' },
-    { r: 'Venial', p: 'Tipo de pecado leve, que no rompe por completo la amistad con Dios.' },
-    { r: 'Viático', p: 'Comunión que se da a una persona que está a punto de morir.' },
-    { r: 'Valle de Josafat', p: 'Lugar cerca de Jerusalén al que la tradición asocia el juicio final.' },
-  ],
-  // Bachillerato - no incluidas: Velo del templo, Vasti, Vísperas, Votos solemnes, Vicente Ferrer, Venerable, Vigilia pascual, Vicaría, Vinagre, Visitación, Vía crucis, Verónica, Viuda de Naín, Vocación, Valdenses, Vaticano I, Veritatis splendor, Voluntarismo, Vaticinio, Verbo encarnado
-  W: [
-    { r: "Wojtyla", p: "Apellido de nacimiento de San Juan Pablo II, el Papa polaco que creó las Jornadas Mundiales de la Juventud." },
-    { r: "Yahweh", p: "Nombre propio de Dios en el Antiguo Testamento, revelado a Moisés en la zarza ardiente.", contiene: true },
-    { r: "Wittenberg", p: "Ciudad alemana donde Lutero clavó sus 95 tesis en la puerta de una iglesia, dando inicio a la Reforma protestante." },
-    { r: "Westminster", p: "Famosa abadía de Londres donde se coronan los reyes de Inglaterra y están enterrados muchos de ellos." },
-    { r: "Worms", p: "Ciudad alemana donde, en 1521, Lutero se negó a retractarse de sus ideas ante el emperador Carlos V." },
-    { r: "Wenceslao", p: "Príncipe santo de Bohemia (actual República Checa), protagonista de un famoso villancico de Navidad." },
-    { r: "Wesley", p: "Clérigo inglés del siglo XVIII que fundó el movimiento metodista dentro de la tradición anglicana." },
-    { r: "Zwinglio", p: "Reformador protestante de Zúrich, contemporáneo de Lutero, que entendía la Eucaristía solo como un signo.", contiene: true }
-  ],
-  // Bachillerato - no incluidas: Newman, Wycliffe, Willibrord
-
-  X: [
-    { r: "Éxodo", p: "Segundo libro de la Biblia: cuenta cómo Moisés sacó al pueblo de Israel de Egipto.", contiene: true },
-    { r: "Exilio babilónico", p: "Época en que el pueblo de Judá fue llevado a Babilonia, tras la destrucción de Jerusalén por Nabucodonosor.", contiene: true },
-    { r: "Excomunión", p: "Pena de la Iglesia Católica que excluye a una persona de los sacramentos y de la vida de la comunidad.", contiene: true },
-    { r: "Extremaunción", p: "Nombre tradicional del sacramento que se da a los enfermos graves, hoy llamado Unción de los enfermos.", contiene: true },
-    { r: "Maximiliano Kolbe", p: "Fraile franciscano polaco que se ofreció a morir en lugar de otro prisionero en el campo de Auschwitz.", contiene: true },
-    { r: "Exorcismo", p: "Rito de la Iglesia por el que se pide la liberación de una persona del poder del demonio.", contiene: true },
-    { r: "Ortodoxia", p: "Nombre de las Iglesias cristianas de Oriente que se separaron de Roma en el Cisma de 1054.", contiene: true },
-    { r: "Genuflexión", p: "Gesto de doblar la rodilla, por ejemplo delante del sagrario.", contiene: true },
-    { r: "Exaltación de la Cruz", p: "Fiesta litúrgica del 14 de septiembre que recuerda el hallazgo y la veneración de la cruz de Jesús.", contiene: true },
-    { r: "Ex cathedra", p: "Expresión latina que se usa cuando el Papa habla con autoridad infalible sobre fe o moral.", contiene: true }
-  ],
-  // Bachillerato - no incluidas: Exégesis, Exultet, Exsurge Domine, Heterodoxia, Doxología, Lux aeterna, Exarca, Exequias, Expiación, Exhortación apostólica, Éxtasis, Ortopraxis, Oxirrinco, Sexagésima, Félix
-
-  Y: [
-    { r: "Reyes", p: "Nombre que se da a David y Salomón cuando gobernaban el pueblo de Israel.", contiene: true },
-    { r: "Creyente", p: "Persona que tiene fe en Dios.", contiene: true },
-    { r: "Rey de reyes", p: "Título que se da a Jesucristo para mostrar que su poder está por encima de cualquier otro gobernante.", contiene: true },
-    { r: "Yugo", p: "Instrumento de madera que llevan los bueyes para tirar del arado. Jesús dijo que el suyo es ligero." },
-    { r: "Yo soy el que soy", p: "Respuesta que Dios dio a Moisés cuando este le preguntó su nombre, junto a la zarza ardiente." },
-    { r: "Yo pecador", p: "Palabras con las que empieza la oración de petición de perdón al inicio de la misa." },
-    { r: "Ley del talión", p: "Principio de justicia del Antiguo Testamento resumido en la frase \"ojo por ojo, diente por diente\".", contiene: true },
-    { r: "Yahvé", p: "Nombre propio de Dios en el Antiguo Testamento, que los judíos evitan pronunciar por respeto." },
-    { r: "Yom Kipur", p: "Fiesta judía del perdón, también llamada Día de la Expiación." }
-  ],
-  // Bachillerato - no incluidas: Yahvista, Yavne, Yeshúa, Yeshivá, Ayuno eucarístico, Ley natural, Mayordomo infiel, Leyenda áurea, Ley mosaica
-
-  Z: [
-    { r: "Lázaro", p: "Amigo de Jesús al que resucitó después de cuatro días en la tumba.", contiene: true },
-    { r: "Zaqueo", p: "Hombre rico y bajito que se subió a un árbol para poder ver a Jesús." },
-    { r: "Zacarías", p: "Padre de Juan el Bautista, que se quedó mudo por dudar de un ángel." },
-    { r: "Zebedeo", p: "Padre de los apóstoles Santiago y Juan." },
-    { r: "Nazareno", p: "Gentilicio de Jesús por haber vivido en Nazaret; así lo llamaban sus contemporáneos.", contiene: true },
-    { r: "Diezmo", p: "Parte de los bienes, normalmente la décima parte, que se entregaba a Dios o al templo.", contiene: true },
-    { r: "Bienaventuranzas", p: "Conjunto de frases que abren el Sermón de la Montaña, en las que Jesús proclama felices a los pobres, los mansos y los perseguidos por la justicia.", contiene: true },
-    { r: "Cruzadas", p: "Expediciones militares medievales que buscaban recuperar Jerusalén y Tierra Santa para los cristianos.", contiene: true },
-    { r: "Zarza ardiente", p: "Arbusto que ardía sin quemarse, donde Dios habló con Moisés." }
-  ]
-  // Bachillerato - no incluidas: Zelotes, Zuinglio, Zorobabel, Nazireato, Azazel, Hazael, Booz, Zafnat-Panea, Esperanza teologal, Zigurat, Zabulón, Zeus, Zimri, Zofar, Cizaña, Ezequías, Ezequiel, Ozías, Ocozías, Uzá, Gaza
   }
 };
 
@@ -2250,10 +2322,49 @@ function normalizar(texto){
     .replace(/\s+/g," ");
 }
 
+// Quita una "s" o "es" final para aceptar singular y plural como equivalentes
+// (p. ej. "mandamiento" / "mandamientos").
+function quitarPlural(texto){
+  if(texto.length > 4 && texto.endsWith("es")) return texto.slice(0, -2);
+  if(texto.length > 3 && texto.endsWith("s")) return texto.slice(0, -1);
+  return texto;
+}
+
+function equivalentes(a, b){
+  return a === b || quitarPlural(a) === quitarPlural(b);
+}
+
 function respuestasValidas(item){
   const lista = [item.r];
   if(Array.isArray(item.alt)) lista.push(...item.alt);
   return lista.map(normalizar);
+}
+
+// Comprueba si la respuesta del alumno es válida: exacta, en singular/plural,
+// o una parte de una respuesta larga con varias palabras (solo si esa parte,
+// por sí sola, también empieza por -o contiene- la letra de la ronda).
+function esRespuestaCorrecta(valorUsuario, item, letra){
+  const valor = normalizar(valorUsuario);
+  if(valor.length === 0) return false;
+
+  const validas = respuestasValidas(item);
+  if(validas.some(v => equivalentes(valor, v))) return true;
+
+  const letraNorm = normalizar(letra);
+  const cumpleLetra = item.contiene ? valor.includes(letraNorm) : valor.startsWith(letraNorm);
+  if(valor.length < 3 || !cumpleLetra) return false;
+
+  return validas.some(completa => {
+    const palabras = completa.split(" ");
+    for(let i = 0; i < palabras.length; i++){
+      let trozo = "";
+      for(let j = i; j < palabras.length; j++){
+        trozo = trozo ? trozo + " " + palabras[j] : palabras[j];
+        if(equivalentes(valor, trozo)) return true;
+      }
+    }
+    return false;
+  });
 }
 
 // ---------- Sonidos (Web Audio API, sin archivos externos) ----------
@@ -2449,14 +2560,13 @@ function responder(){
   if(document.getElementById("campo-respuesta").disabled) return;
   const letra = letraActual();
   const item = estados[letra].item;
-  const valor = normalizar(document.getElementById("campo-respuesta").value);
-  const validas = respuestasValidas(item);
+  const valorEscrito = document.getElementById("campo-respuesta").value;
 
   document.getElementById("campo-respuesta").disabled = true;
   document.getElementById("btn-responder").disabled = true;
   document.getElementById("btn-pasapalabra").disabled = true;
 
-  if(valor.length > 0 && validas.includes(valor)){
+  if(esRespuestaCorrecta(valorEscrito, item, letra)){
     estados[letra].status = "acierto";
     sonidoAcierto();
     document.getElementById("mensaje-feedback").textContent = "¡Correcto!";
@@ -2509,13 +2619,15 @@ function finalizarPartida(){
   detenerTemporizador();
 
   let a=0,f=0;
-  const filas = [];
+  const fallos = [];
   orden.forEach(letra => {
     const st = estados[letra].status;
     const item = estados[letra].item;
     if(st==="acierto") a++;
-    else f++;
-    filas.push({letra, st, respuesta:item.r});
+    else{
+      f++;
+      fallos.push({letra, pregunta:item.p, respuesta:item.r});
+    }
   });
 
   document.getElementById("f-aciertos").textContent = a;
@@ -2525,14 +2637,18 @@ function finalizarPartida(){
 
   const cont = document.getElementById("lista-respuestas");
   cont.innerHTML = "";
-  filas.forEach(fila => {
-    const div = document.createElement("div");
-    const claseFila = fila.st === "acierto" ? "ok" : "ko";
-    const icono = fila.st === "acierto" ? "✓" : "✗";
-    div.className = "fila " + claseFila;
-    div.innerHTML = '<span class="icono">'+icono+'</span><span class="letra">'+fila.letra+'</span><span class="resp">'+fila.respuesta+'</span>';
-    cont.appendChild(div);
-  });
+  if(fallos.length === 0){
+    cont.innerHTML = '<div class="sin-fallos">¡Enhorabuena, ni un solo fallo! 🎉</div>';
+  } else {
+    fallos.forEach(fila => {
+      const div = document.createElement("div");
+      div.className = "fila ko";
+      div.innerHTML =
+        '<span class="icono">✗</span><span class="letra">'+fila.letra+'</span>'+
+        '<span class="resp"><strong>'+fila.respuesta+'</strong><br><span class="pregunta-fallo">'+fila.pregunta+'</span></span>';
+      cont.appendChild(div);
+    });
+  }
 
   mostrarPantalla("pantalla-final");
 }
